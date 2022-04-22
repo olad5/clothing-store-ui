@@ -1,0 +1,24 @@
+@use "../../../assets//styles//main.scss" as global;
+
+#categories {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  & button {
+    padding: 2rem 3rem;
+    background-color: transparent;
+    font-weight: 600;
+    font-size: 1rem;
+
+    &:hover {
+      color: global.$secondary-green;
+      border-bottom: 1px solid global.$secondary-green;
+    }
+
+    &.current {
+      color: global.$secondary-green;
+      border-bottom: 1px solid global.$secondary-green;
+    }
+  }
+}

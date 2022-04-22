@@ -1,6 +1,6 @@
 @use "../../../../src/assets/styles/main.scss" as global;
 
-button {
+#app-button {
   background-color: global.$secondary-green;
   padding: 1rem;
   text-transform: uppercase;

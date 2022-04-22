@@ -6,6 +6,7 @@ export default class AppButton extends Component<AppButtonProps> {
   render() {
     return (
       <button
+        id="app-button"
         className={`
             ${this.props.variant === "secondary" ? "secondary" : ""}
             `}
