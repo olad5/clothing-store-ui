@@ -1,0 +1,52 @@
+@use "../../../assets/styles/main.scss" as global;
+
+#actions {
+  @include global.full-container-size;
+  display: flex;
+  gap: 1.4rem;
+  justify-content: center;
+  align-items: center;
+
+  & > * {
+    cursor: pointer;
+  }
+
+  & .currency-switcher {
+    &-text {
+      display: flex;
+      justify-content: center;
+      width: 80%;
+      gap: 0.8rem;
+      font-family: global.$font-raleway;
+      font-weight: 500;
+      font-size: 1.9rem;
+
+      & .arrow {
+        font-size: 1.1rem;
+        transform: scaleX(1.4);
+        align-self: end;
+        line-height: 1.4rem;
+      }
+    }
+  }
+
+  & .cart-icon {
+    display: grid;
+    justify-items: center;
+    position: relative;
+    transform: scale(1.2);
+
+    & .cart-items-count {
+      background-color: global.$primary-black;
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      border-radius: global.$border-radius;
+      text-align: center;
+      position: absolute;
+      font-weight: 700;
+      left: 0.9rem;
+      bottom: 0.8rem;
+    }
+  }
+}
