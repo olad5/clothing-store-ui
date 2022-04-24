@@ -1,0 +1,16 @@
+@use "../../../assets/styles/main.scss" as global;
+
+#nav-bar {
+  @include global.full-container-size;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & .app-logo {
+    display: grid;
+  }
+
+  & .nav-actions {
+    width: 9rem;
+  }
+}
