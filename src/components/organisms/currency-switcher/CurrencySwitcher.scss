@@ -1,0 +1,27 @@
+@use "../../../assets/styles/main.scss" as global;
+
+#currency-switcher {
+  @include global.full-container-size;
+  border-radius: 1rem;
+  box-shadow: 19px 7px 58px 0px rgba(0, 0, 0, 0.1);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  & .currency {
+    display: flex;
+    font-size: 1.7rem;
+    font-weight: 500;
+    gap: 0.6rem;
+    width: 100%;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    &:hover {
+      background-color: #eeeeee;
+    }
+  }
+}
