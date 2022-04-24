@@ -15,11 +15,12 @@
 
   &.secondary {
     color: black;
-    border: 2px solid global.$primary-black;
+    border: 1px solid global.$primary-black;
     background-color: transparent;
   }
 
   &.current-size {
     background-color: global.$primary-black;
+    color: #fff;
   }
 }

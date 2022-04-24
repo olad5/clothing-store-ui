@@ -1,7 +1,6 @@
 @use "../../../assets/styles/main.scss" as global;
 
-#colors {
-  max-width: 100%;
+#sizes {
   width: 100%;
   height: 100%;
   display: flex;
@@ -14,7 +13,7 @@
     flex: 1;
   }
 
-  & .color-boxes {
+  & .size-boxes {
     flex: 2;
     display: flex;
     width: 100%;
@@ -22,14 +21,8 @@
     justify-content: space-between;
     gap: 0.6rem;
 
-    & .color-box {
+    > .size-btn {
       flex-grow: 1;
-
-      &.current {
-        border: 2px solid white;
-        outline: 1px solid global.$secondary-green;
-        padding: 1rem;
-      }
     }
   }
 }
