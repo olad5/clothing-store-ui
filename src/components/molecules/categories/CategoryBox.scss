@@ -1,7 +1,7 @@
 @use "../../../assets//styles//main.scss" as global;
 
 #categories {
-  width: 100%;
+  @include global.full-container-size;
   display: flex;
   justify-content: space-between;
 

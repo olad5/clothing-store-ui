@@ -1,7 +1,9 @@
+@use "../../../assets/styles/main.scss" as global;
+
 #cart-image-card {
-  width: 100%;
-  height: 100%;
+  @include global.full-container-size;
   position: relative;
+
   & .image-btns {
     position: absolute;
     top: 20rem;
