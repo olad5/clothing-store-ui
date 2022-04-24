@@ -1,0 +1,14 @@
+@use "../../../assets/styles/main.scss" as global;
+
+#item-name {
+  @include global.full-container-size;
+  font-size: 2rem;
+
+  & .name {
+    font-weight: 600;
+  }
+
+  & .brand {
+    font-weight: 400;
+  }
+}
