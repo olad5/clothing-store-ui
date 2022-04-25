@@ -4,13 +4,18 @@
   @include global.full-container-size;
   position: relative;
 
+  & .item-image {
+    @include global.full-container-size;
+  }
+
   & .image-btns {
     position: absolute;
-    top: 20rem;
-    right: 10.4rem;
+    top: 20.3rem;
+    right: 4rem;
+    z-index: 10;
     display: flex;
-    width: 10%;
-    height: 20%;
-    gap: 1rem;
+    width: 20px;
+    height: 24px;
+    gap: 0.6rem;
   }
 }

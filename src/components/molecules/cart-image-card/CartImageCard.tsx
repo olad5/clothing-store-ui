@@ -7,7 +7,11 @@ export default class CartImageCard extends Component {
   render() {
     return (
       <div id="cart-image-card">
-        <img src={CartItemImage} alt="cart item card image" />
+        <img
+          className="item-image"
+          src={CartItemImage}
+          alt="cart item card image"
+        />
 
         <div className="image-btns">
           <AppButton variant="secondary">{"<"}</AppButton>

@@ -1,0 +1,48 @@
+@use "../../../assets/styles/main.scss" as global;
+
+#cart-item-summary {
+  display: flex;
+  justify-content: space-between;
+
+  & .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 15%;
+
+    & .sizes {
+      height: 6rem;
+    }
+
+    & .colors {
+      height: 5.6rem;
+      width: 51%;
+    }
+  }
+
+  & .right {
+    display: flex;
+    gap: 1.8rem;
+
+    & .cart-btns {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      & .cart-btn {
+        width: 4rem;
+        font-size: 20rem;
+      }
+
+      & .cart-count {
+        font-size: 2rem;
+        font-weight: 500;
+      }
+    }
+
+    & .cart-image-card {
+      @include global.full-container-size;
+    }
+  }
+}

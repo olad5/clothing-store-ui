@@ -3,12 +3,16 @@
 #app-button {
   @include global.full-container-size;
   background-color: global.$secondary-green;
-  padding: 1rem;
+  padding: 0.7rem;
   text-transform: uppercase;
   color: #fff;
+  font-size: var(--app-button-font-size);
   display: flex;
+  text-align: center;
   justify-content: center;
   align-items: center;
+  line-height: 2rem;
+  font-weight: 400;
 
   &.secondary {
     color: black;
@@ -16,7 +20,8 @@
     background-color: transparent;
   }
 
-  &.current-size {
+  &.current-size,
+  &.tertiary {
     background-color: global.$primary-black;
     color: #fff;
   }
