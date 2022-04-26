@@ -1,0 +1,74 @@
+@use "../../../../src/assets/styles/main.scss" as global;
+
+#cart-overlay {
+  box-shadow: 19px 7px 58px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-height: 66rem;
+  padding: 2rem 1rem;
+
+  & .cart-overlay-heading {
+    font-size: 1.6rem;
+    & .number-of-items {
+      font-weight: 300;
+    }
+  }
+
+  & .cart-overlay-items {
+    @include global.full-container-size;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    min-height: 300%;
+
+    &.overflow {
+      overflow-y: auto;
+    }
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgb(179, 177, 177);
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgb(136, 136, 136);
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgb(100, 100, 100);
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:active {
+      background: rgb(68, 68, 68);
+      border-radius: 10px;
+    }
+
+    & > * {
+      max-height: 250px;
+    }
+  }
+
+  & .cart-overlay-summary {
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  & .cart-overlay-btns {
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    justify-content: space-between;
+    font-size: 1.6rem;
+  }
+}
