@@ -39,4 +39,18 @@
       right: 2rem;
     }
   }
+
+  &.out-of-stock {
+    pointer-events: none;
+    filter: opacity(40%);
+
+    & .out-of-stock-text {
+      text-transform: uppercase;
+      position: absolute;
+      font-size: 2rem;
+      top: 12rem;
+      right: 7rem;
+      font-weight: 500;
+    }
+  }
 }
