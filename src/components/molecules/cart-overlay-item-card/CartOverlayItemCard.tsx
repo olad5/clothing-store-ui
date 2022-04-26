@@ -1,33 +1,29 @@
 import { Component } from "react";
-
-// Components
 import AppButton from "../../atoms/app-button/AppButton";
 import ItemName from "../../atoms/item-name/ItemName";
 import PriceTag from "../../atoms/price-tag/PriceTag";
-import CartImageCard from "../../molecules/cart-image-card/CartImageCard";
-import Colors from "../../molecules/colors/Colors";
-import Sizes from "../../molecules/sizes/Sizes";
+import CartItemImage from "../../../assets/images/cart-item-card-image.png";
+import Colors from "../colors/Colors";
+import Sizes from "../sizes/Sizes";
+import "./CartOverlayItemCard.scss";
 
-// Styles
-import "./CartItemCard.scss";
-
-export default class CartItemCard extends Component {
+export default class CartOverlayItemCard extends Component {
   render() {
     return (
-      <div id="cart-item-summary">
+      <div id="cart-overlay-item-card">
         {/* left side */}
         <div className="left">
           <div className="item-name">
-            <ItemName />
+            <ItemName inCartItemOverlay={true} />
           </div>
           <div className="price-tag">
-            <PriceTag price={50} fontBold={true} />
+            <PriceTag price={50} fontMedium={true} />
           </div>
           <div className="sizes">
-            <Sizes variant="cart-item-card" />
+            <Sizes variant="cart-overlay-item" />
           </div>
           <div className="colors">
-            <Colors />
+            <Colors variant="cart-overlay-item" />
           </div>
         </div>
 
@@ -35,19 +31,19 @@ export default class CartItemCard extends Component {
         <div className="right">
           <div className="cart-btns">
             <div className="cart-btn">
-              <AppButton variant="secondary" fontSize="2.4rem">
+              <AppButton variant="secondary" fontSize="1.8rem">
                 +
               </AppButton>
             </div>
             <p className="cart-count">1</p>
             <div className="cart-btn">
-              <AppButton variant="secondary" fontSize="2.4rem">
+              <AppButton variant="secondary" fontSize="1.8rem">
                 -
               </AppButton>
             </div>
           </div>
           <div className="cart-image-card">
-            <CartImageCard />
+            <img className="cart-image" src={CartItemImage} alt="" />
           </div>
         </div>
       </div>

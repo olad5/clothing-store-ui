@@ -31,3 +31,13 @@
     }
   }
 }
+
+#colors.cart-overlay-item {
+  gap: 0.7rem;
+  height: 4.5rem;
+
+  & .color-boxes {
+    gap: 0.9rem;
+    width: 62%;
+  }
+}

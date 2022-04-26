@@ -1,13 +1,15 @@
 @use "../../../../src/assets/styles/main.scss" as global;
 
-p {
-  &.bold {
-    font-size: 2rem;
-    font-weight: 700;
-  }
+#price-tag {
+  p {
+    &.bold {
+      font-size: 2rem;
+      font-weight: 700;
+    }
 
-  &.medium {
-    font-weight: 500;
-    font-size: 1.5rem;
+    &.medium {
+      font-weight: 500;
+      font-size: 1.5rem;
+    }
   }
 }

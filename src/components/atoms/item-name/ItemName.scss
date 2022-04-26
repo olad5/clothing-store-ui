@@ -12,3 +12,11 @@
     font-weight: 400;
   }
 }
+
+#item-name.cart-item-overlay {
+  font-size: 1.7rem;
+  line-height: 1.7em;
+  & > * {
+    font-weight: 400;
+  }
+}

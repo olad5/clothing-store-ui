@@ -2,18 +2,17 @@
 
 #sizes {
   @include global.full-container-size;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+  display: grid;
+  gap: 1rem;
 
   & p {
     font-size: 1.4rem;
     font-weight: 700;
-    flex: 1;
+    flex: 2;
   }
 
   & .size-boxes {
-    flex: 2;
+    flex: 1;
     display: flex;
     @include global.full-container-size;
     justify-content: space-between;
@@ -23,4 +22,9 @@
       flex-grow: 1;
     }
   }
+}
+
+#sizes.cart-overlay-item {
+  gap: 0.8rem;
+  grid-auto-rows: 30% 2.5rem;
 }
