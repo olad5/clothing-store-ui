@@ -2,7 +2,6 @@ import { Component } from "react";
 
 // Components
 import CartItemCard from "../../molecules/cart-item-card/CartItemCard";
-import Navbar from "../../organisms/nav-bar/NavBar";
 import AppButton from "../../atoms/app-button/AppButton";
 
 // Styles
@@ -15,8 +14,7 @@ export default class CartTemplate extends Component {
     let total = numOfItems.length * 100;
 
     return (
-      <div id="cart-template" className="container">
-        <Navbar />
+      <div id="cart-template">
         <h1>CART</h1>
         <div className="cart-items">
           <hr className="line" />

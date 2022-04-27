@@ -1,22 +1,21 @@
 import { Component } from "react";
+
 // Components
 import ProductThumbnails from "../../molecules/product-thumbnails/ProductThumbnails";
-import Navbar from "../../organisms/nav-bar/NavBar";
 import ProductItemImage from "../../../assets/images/product-A.png";
-
-// Styles
-import "./ProductDescriptionTemplate.scss";
 import ItemName from "../../atoms/item-name/ItemName";
 import Sizes from "../../molecules/sizes/Sizes";
 import Colors from "../../molecules/colors/Colors";
 import PriceTag from "../../atoms/price-tag/PriceTag";
 import AppButton from "../../atoms/app-button/AppButton";
 
+// Styles
+import "./ProductDescriptionTemplate.scss";
+
 export default class ProductDescriptionTemplate extends Component {
   render() {
     return (
-      <div id="product-description-template" className="container">
-        <Navbar />
+      <div id="product-description-template">
         <div className="content">
           <div className="thumbnails">
             <ProductThumbnails />
