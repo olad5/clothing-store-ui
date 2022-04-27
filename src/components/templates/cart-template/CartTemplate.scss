@@ -1,0 +1,39 @@
+#cart-template {
+  margin-bottom: 10rem;
+  h1 {
+    margin: 5rem 0;
+    font-size: 3rem;
+  }
+  & .cart-items {
+    display: flex;
+    flex-direction: column;
+
+    & .line {
+      margin: 3rem 0;
+      border-top: 0.3px solid grey;
+      opacity: 0.3;
+    }
+  }
+  & .cart-summary {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    font-size: 1.8rem;
+    gap: 1.3rem;
+    font-weight: 400;
+
+    & .breakdown-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    & .bold-text {
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+
+    & .app-btn {
+      width: 22rem;
+    }
+  }
+}
