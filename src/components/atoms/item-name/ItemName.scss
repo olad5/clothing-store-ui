@@ -2,7 +2,7 @@
 
 #item-name {
   @include global.full-container-size;
-  font-size: 2rem;
+  font-size: inherit;
 
   & .name {
     font-weight: 600;
@@ -16,6 +16,7 @@
 #item-name.cart-item-overlay {
   font-size: 1.7rem;
   line-height: 1.7em;
+
   & > * {
     font-weight: 400;
   }

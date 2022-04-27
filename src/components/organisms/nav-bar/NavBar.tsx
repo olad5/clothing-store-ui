@@ -15,7 +15,9 @@ export default class Navbar extends Component {
         <div className="categories">
           <CategoryBox />
         </div>
-        <img className="app-logo" src={AppLogo} alt="App logo" />
+        <a href="#" className="app-logo">
+          <img src={AppLogo} alt="App logo" />
+        </a>
         <div className="nav-actions">
           <Actions />
         </div>
