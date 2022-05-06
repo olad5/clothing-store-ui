@@ -1,19 +1,48 @@
 import { Component } from "react";
+import { connect } from "react-redux";
+import { RootState } from "../../../state/reducers";
+import { ProductsGridProps } from "./ProductsGrid.d";
+import { actionCreators } from "../../../state/";
+import { ProductAction } from "../../../state/actions/products";
+import { bindActionCreators, Dispatch } from "redux";
+
+// Components
 import ProductGridCard from "../../molecules/product-grid-card/ProductGridCard";
+
+// Styles
 import "./ProductsGrid.scss";
 
-export default class ProductsGrid extends Component {
+class ProductsGrid extends Component<ProductsGridProps> {
+  componentDidMount() {
+    this.props.getCategoryProducts("all");
+  }
   render() {
-    let products = Array(12).fill(0);
+    let products = this.props.products;
 
     return (
       <div id="products-grid">
         <div className="products-gallery">
           {products.map((product, index) => (
-            <ProductGridCard />
+            <ProductGridCard key={index} product={product} />
           ))}
         </div>
       </div>
     );
   }
 }
+
+function mapStateToProps(state: RootState) {
+  return {
+    products: state.products.products,
+  };
+}
+
+function mapDispatchToProps(dispatch: Dispatch<ProductAction>) {
+  const { getCategoryProducts } = bindActionCreators(actionCreators, dispatch);
+
+  return {
+    getCategoryProducts: (category: string) => getCategoryProducts(category),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsGrid);

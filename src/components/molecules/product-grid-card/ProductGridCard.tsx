@@ -12,6 +12,7 @@ import "./ProductGridCard.scss";
 
 export default class ProductGridCard extends Component<ProductGridCardProps> {
   render() {
+    let product = this.props.product;
     return (
       <div
         id="product-grid-card"
@@ -25,7 +26,7 @@ export default class ProductGridCard extends Component<ProductGridCardProps> {
         {this.props.outOfStock ? (
           <div className="out-of-stock-text">out of stock</div>
         ) : null}
-        <p className="product-name">Apollo Running Street</p>
+        <p className="product-name">{product.name}</p>
         <div className="price-tag">
           <PriceTag price={50} fontMedium={true} />
         </div>
