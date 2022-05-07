@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, createRef } from "react";
 import { connect } from "react-redux";
 
 import EmptyCartIcon from "../../../assets/icons/empty-cart-icon.svg";
@@ -15,6 +15,9 @@ class Actions extends Component<ActionsProps> {
   state = {
     currencySwitcherActive: false,
   };
+
+  wrapperRef = createRef<HTMLDivElement>();
+
   handleClick(
     e: React.MouseEvent<HTMLDivElement>,
     currencySwitcherActive: boolean
@@ -29,12 +32,35 @@ class Actions extends Component<ActionsProps> {
       currencySwitcherActive: false,
     });
   }
+
+  handleClickOutside(event: MouseEvent) {
+    if (
+      this.wrapperRef &&
+      this.state.currencySwitcherActive &&
+      !this.wrapperRef.current?.contains(event.target as Node)
+    ) {
+      this.setState({
+        currencySwitcherActive: false,
+      });
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener("mousedown", (e) => this.handleClickOutside(e));
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", (e) =>
+      this.handleClickOutside(e)
+    );
+  }
   render() {
     const { currencySwitcherActive } = this.state;
     return (
       <div id="actions">
         <div
           className="currency-switcher"
+          ref={this.wrapperRef}
           onClick={(e) => this.handleClick(e, currencySwitcherActive)}
         >
           <div className="currency-switcher-text">
