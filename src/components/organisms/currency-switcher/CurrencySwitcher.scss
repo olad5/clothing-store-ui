@@ -20,6 +20,14 @@
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 
+    & .symbol {
+      flex: 1;
+    }
+
+    & .label {
+      flex: 2;
+    }
+
     &:hover {
       background-color: #eeeeee;
     }

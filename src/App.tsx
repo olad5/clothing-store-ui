@@ -5,6 +5,11 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { connect } from "react-redux";
+import { actionCreators } from "./state";
+import { bindActionCreators, Dispatch } from "redux";
+import { CurrencyAction } from "./state/actions/currencies";
+import { AppProps } from "./App.d";
 
 // components
 import Navbar from "./components/organisms/nav-bar/NavBar";
@@ -15,7 +20,11 @@ import ProductDescriptionPage from "./pages/product-description-page/ProductDesc
 // Styles
 import "./assets/styles/main.scss";
 
-class App extends Component {
+class App extends Component<AppProps> {
+  componentDidMount() {
+    this.props.getCurrencies();
+  }
+
   render() {
     return (
       <div>
@@ -38,4 +47,12 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapDispatchToProps(dispatch: Dispatch<CurrencyAction>) {
+  const { getCurrencies } = bindActionCreators(actionCreators, dispatch);
+
+  return {
+    getCurrencies: () => getCurrencies(),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(App);

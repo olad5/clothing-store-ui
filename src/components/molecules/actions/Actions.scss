@@ -12,6 +12,7 @@
   }
 
   & .currency-switcher {
+    position: relative;
     &-text {
       display: flex;
       justify-content: center;
@@ -26,6 +27,24 @@
         transform: scaleX(1.4);
         align-self: end;
         line-height: 1.4rem;
+
+        &-active {
+          transform: scaleX(1.4) rotate(180deg);
+        }
+      }
+    }
+    &-overlay {
+      z-index: 100;
+      position: absolute;
+      width: 10rem;
+      left: -3rem;
+      top: 3rem;
+      opacity: 0;
+      transition: opacity 600ms ease-out;
+
+      &.active {
+        opacity: 1;
+        transition: opacity 600ms ease-out;
       }
     }
   }

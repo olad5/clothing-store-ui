@@ -4,7 +4,6 @@ import { ProductGridCardProps } from "./ProductGridCard.d";
 
 // Components
 import PriceTag from "../../atoms/price-tag/PriceTag";
-import ProductItemImage from "../../../assets/images/product-A.png";
 import AddToCartIcon from "../../atoms/add-to-cart-icon/AddToCartIcon";
 
 // Styles
@@ -19,13 +18,14 @@ export default class ProductGridCard extends Component<ProductGridCardProps> {
         className={` ${this.props.outOfStock ? "out-of-stock" : ""} `}
       >
         <img
-          src={ProductItemImage}
+          src={product.gallery[0]}
           alt="Product Image"
           className="product-image"
         />
-        {this.props.outOfStock ? (
+
+        {this.props.outOfStock && (
           <div className="out-of-stock-text">out of stock</div>
-        ) : null}
+        )}
         <p className="product-name">{product.name}</p>
         <div className="price-tag">
           <PriceTag price={50} fontMedium={true} />
