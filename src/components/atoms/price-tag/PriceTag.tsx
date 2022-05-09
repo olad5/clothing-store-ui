@@ -1,11 +1,17 @@
 import React from "react";
+import { connect } from "react-redux";
+import { RootState } from "../../../state/reducers";
 import { PriceTagProps } from "./PriceTag.d";
 
 // Styles
 import "./PriceTag.scss";
 
-export default class PriceTag extends React.Component<PriceTagProps> {
+class PriceTag extends React.Component<PriceTagProps> {
   render() {
+    let price = this.props.prices.filter(
+      (price) => price.currency.symbol === this.props.currentCurrency.symbol
+    )[0];
+
     return (
       <div id="price-tag">
         <p
@@ -14,9 +20,19 @@ export default class PriceTag extends React.Component<PriceTagProps> {
             ${this.props.fontBold ? "bold" : ""}
             `}
         >
-          ${this.props.price.toFixed(2)}
+          {price.currency.symbol}
+          {price.amount}
         </p>
+        <p></p>
       </div>
     );
   }
 }
+
+function mapStateToProps(state: RootState) {
+  return {
+    currentCurrency: state.currencies.currentCurrency,
+  };
+}
+
+export default connect(mapStateToProps)(PriceTag);

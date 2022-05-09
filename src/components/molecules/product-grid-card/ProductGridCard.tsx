@@ -15,7 +15,7 @@ export default class ProductGridCard extends Component<ProductGridCardProps> {
     return (
       <div
         id="product-grid-card"
-        className={` ${this.props.outOfStock ? "out-of-stock" : ""} `}
+        className={` ${product.inStock ? "out-of-stock" : ""} `}
       >
         <img
           src={product.gallery[0]}
@@ -23,12 +23,12 @@ export default class ProductGridCard extends Component<ProductGridCardProps> {
           className="product-image"
         />
 
-        {this.props.outOfStock && (
+        {product.inStock && (
           <div className="out-of-stock-text">out of stock</div>
         )}
         <p className="product-name">{product.name}</p>
         <div className="price-tag">
-          <PriceTag price={50} fontMedium={true} />
+          <PriceTag prices={product.prices} fontMedium={true} />
         </div>
         <div className="cart-icon">
           <AddToCartIcon />

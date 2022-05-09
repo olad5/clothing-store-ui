@@ -1,5 +1,8 @@
+import { Price, Currency } from "../../../types/Currency";
+
 export type PriceTagProps = {
-  price: number;
   fontBold?: boolean;
   fontMedium?: boolean;
+  prices: Price[];
+  currentCurrency: Currency;
 };
