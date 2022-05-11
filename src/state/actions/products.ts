@@ -3,7 +3,7 @@ import { ProductActionType } from "../action-types/index";
 
 interface FetchProductAction {
   type: ProductActionType.FETCH_PRODUCT;
-  payload: string;
+  payload: Product;
 }
 
 interface FetchProductsByCategoryAction {

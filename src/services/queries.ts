@@ -39,14 +39,14 @@ export const categoryProductsQuery = (variables: {
               name
               inStock
               gallery
-              prices {
-                currency {
-                  symbol
+                prices {
+                  currency {
+                    symbol
+                  }
+                  amount
                 }
-                amount
               }
             }
-          }
         }
       `,
     variables: {

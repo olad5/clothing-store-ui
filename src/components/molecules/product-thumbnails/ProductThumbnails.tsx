@@ -1,14 +1,14 @@
 import { Component } from "react";
-import ProductThumbnail from "../../../assets/images/cart-item-card-image.png";
 import "./ProductThumbnails.scss";
+import { ProductThumbnailsProps } from "./ProductThumbnails.d";
 
-export default class ProductThumbnails extends Component {
+export default class ProductThumbnails extends Component<ProductThumbnailsProps> {
   render() {
     return (
       <div id="product-thumbnails">
-        <img src={ProductThumbnail} alt="Product thumbnail" />
-        <img src={ProductThumbnail} alt="Product thumbnail" />
-        <img src={ProductThumbnail} alt="Product thumbnail" />
+        {this.props.gallery.map((picture, index) => (
+          <img key={index} src={picture} alt="Product thumbnail" />
+        ))}
       </div>
     );
   }

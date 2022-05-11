@@ -2,7 +2,6 @@ import { Component } from "react";
 
 // Components
 import ProductThumbnails from "../../molecules/product-thumbnails/ProductThumbnails";
-import ProductItemImage from "../../../assets/images/product-A.png";
 import ItemName from "../../atoms/item-name/ItemName";
 import Sizes from "../../molecules/sizes/Sizes";
 import Colors from "../../molecules/colors/Colors";
@@ -11,18 +10,21 @@ import AppButton from "../../atoms/app-button/AppButton";
 
 // Styles
 import "./ProductDescriptionTemplate.scss";
+import { ProductDescriptionTemplateProps } from "./ProductDescriptionTemplateProps.d";
 
-export default class ProductDescriptionTemplate extends Component {
+export default class ProductDescriptionTemplate extends Component<ProductDescriptionTemplateProps> {
   render() {
+    let product = this.props.product;
+
     return (
       <div id="product-description-template">
         <div className="content">
           <div className="thumbnails">
-            <ProductThumbnails />
+            <ProductThumbnails gallery={product.gallery} />
           </div>
           <div className="product-image">
             <img
-              src={ProductItemImage}
+              src={product.gallery[0]}
               alt=" Main Product Image"
               className="main-product-image"
             />
@@ -39,7 +41,7 @@ export default class ProductDescriptionTemplate extends Component {
             </div>
             <div className="price-tag">
               <h4>PRICE:</h4>
-              <PriceTag price={50} fontBold={true} />
+              <PriceTag prices={product.prices} fontBold={true} />
             </div>
             <div className="app-btn">
               <AppButton>add to cart</AppButton>

@@ -2,9 +2,11 @@ import { Reducer } from "redux";
 import { Product } from "../../types/Product";
 import { ProductActionType } from "../action-types";
 import { ProductAction } from "../actions/products";
+
 type initialStateType = {
   products: Product[];
 };
+
 const initialState: initialStateType = { products: [] };
 
 const reducer: Reducer<initialStateType, ProductAction> = (

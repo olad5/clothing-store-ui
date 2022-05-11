@@ -8,12 +8,14 @@ import AddToCartIcon from "../../atoms/add-to-cart-icon/AddToCartIcon";
 
 // Styles
 import "./ProductGridCard.scss";
+import { Link } from "react-router-dom";
 
 export default class ProductGridCard extends Component<ProductGridCardProps> {
   render() {
     let product = this.props.product;
     return (
-      <div
+      <Link
+        to={`${product.inStock ? "#" : `/products/${product.id}`} `}
         id="product-grid-card"
         className={` ${product.inStock ? "out-of-stock" : ""} `}
       >
@@ -33,7 +35,7 @@ export default class ProductGridCard extends Component<ProductGridCardProps> {
         <div className="cart-icon">
           <AddToCartIcon />
         </div>
-      </div>
+      </Link>
     );
   }
 }

@@ -6,7 +6,7 @@ export type Product = {
   category: string;
   description: string;
   brand: string;
-  gallery: string;
+  gallery: string[];
   inStock: boolean;
   attributes: AttributeSet[];
   prices: Price[];
