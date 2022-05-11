@@ -1,18 +1,18 @@
 import { Component } from "react";
-import { SizesProps } from "./Sizes.d";
+import { TextAttributeProps } from "./TextAtrribute.d";
 
 // Components
 import AppButton from "../../atoms/app-button/AppButton";
 
 // Styles
-import "./Sizes.scss";
+import "./TextAtrribute.scss";
 
-export default class Sizes extends Component<SizesProps> {
+export default class TextAttribute extends Component<TextAttributeProps> {
   render() {
     let sizes = ["XS", "S", "M", "L"];
     return (
       <div
-        id="sizes"
+        id="text-attribute"
         className={`
 
 ${this.props.variant === "cart-overlay-item" ? "cart-overlay-item" : ""}
@@ -20,9 +20,9 @@ ${this.props.variant === "cart-overlay-item" ? "cart-overlay-item" : ""}
 `}
       >
         <p>SIZE:</p>
-        <div className="size-boxes">
+        <div className="attribute-boxes">
           {sizes.map((size, index) => (
-            <div key={index} className="size-btn">
+            <div key={index} className="attribute-btn">
               <AppButton variant="secondary">{size}</AppButton>
             </div>
           ))}

@@ -3,8 +3,8 @@ import { Component } from "react";
 // Components
 import ProductThumbnails from "../../molecules/product-thumbnails/ProductThumbnails";
 import ItemName from "../../atoms/item-name/ItemName";
-import Sizes from "../../molecules/sizes/Sizes";
 import Colors from "../../molecules/colors/Colors";
+import TextAttribute from "../../molecules/text-attribute/TextAtrribute";
 import PriceTag from "../../atoms/price-tag/PriceTag";
 import AppButton from "../../atoms/app-button/AppButton";
 import { ProductDescriptionTemplateProps } from "./ProductDescriptionTemplateProps.d";
@@ -33,8 +33,8 @@ export default class ProductDescriptionTemplate extends Component<ProductDescrip
             <div className="item-name">
               <ItemName name={product.name} brand={product.brand} />
             </div>
-            <div className="sizes">
-              <Sizes variant="cart-item-card" />
+            <div className="text-attribute">
+              <TextAttribute variant="cart-item-card" />
             </div>
             <div className="colors">
               <Colors />

@@ -10,8 +10,8 @@ export default class ItemName extends Component<ItemNameProps> {
       <div
         id="item-name"
         className={`
-${this.props.inCartItemOverlay ? "cart-item-overlay" : ""}
-`}
+        ${this.props.inCartItemOverlay ? "cart-item-overlay" : ""}
+        `}
       >
         <p className="name">{this.props.name}</p>
         <p className="brand">{this.props.brand}</p>
