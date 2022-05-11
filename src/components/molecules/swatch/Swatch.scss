@@ -1,6 +1,6 @@
 @use "../../../assets/styles/main.scss" as global;
 
-#colors {
+#swatch {
   @include global.full-container-size;
 
   display: flex;
@@ -13,14 +13,14 @@
     flex: 1;
   }
 
-  & .color-boxes {
+  & .swatch-boxes {
     flex: 2;
     display: flex;
     @include global.full-container-size;
     justify-content: space-between;
     gap: 0.6rem;
 
-    & .color-box {
+    & .swatch-box {
       flex-grow: 1;
 
       &.current {
@@ -32,11 +32,11 @@
   }
 }
 
-#colors.cart-overlay-item {
+#swatch.cart-overlay-item {
   gap: 0.7rem;
   height: 4.5rem;
 
-  & .color-boxes {
+  & .swatch-boxes {
     gap: 0.9rem;
     width: 62%;
   }

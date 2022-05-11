@@ -3,7 +3,7 @@ import { Component } from "react";
 // Components
 import ProductThumbnails from "../../molecules/product-thumbnails/ProductThumbnails";
 import ItemName from "../../atoms/item-name/ItemName";
-import Colors from "../../molecules/colors/Colors";
+import Swatch from "../../molecules/swatch/Swatch";
 import TextAttribute from "../../molecules/text-attribute/TextAtrribute";
 import PriceTag from "../../atoms/price-tag/PriceTag";
 import AppButton from "../../atoms/app-button/AppButton";
@@ -36,8 +36,8 @@ export default class ProductDescriptionTemplate extends Component<ProductDescrip
             <div className="text-attribute">
               <TextAttribute variant="cart-item-card" />
             </div>
-            <div className="colors">
-              <Colors />
+            <div className="swatch">
+              <Swatch />
             </div>
             <div className="price-tag">
               <h4>PRICE:</h4>

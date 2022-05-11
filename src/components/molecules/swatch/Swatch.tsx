@@ -1,17 +1,17 @@
 import { Component } from "react";
-import { ColorsProps } from "./Colors.d";
+import { SwatchProps } from "./Swatch.d";
 
 // Styles
-import "./Colors.scss";
+import "./Swatch.scss";
 
-export default class Colors extends Component<ColorsProps> {
+export default class Swatch extends Component<SwatchProps> {
   render() {
-    let colors = ["grey", "black", "darkgreen"];
+    let swatch = ["grey", "black", "darkgreen"];
     let active = false;
 
     return (
       <div
-        id="colors"
+        id="swatch"
         className={`
 
 ${this.props.variant === "cart-overlay-item" ? "cart-overlay-item" : ""}
@@ -19,12 +19,12 @@ ${this.props.variant === "cart-overlay-item" ? "cart-overlay-item" : ""}
 `}
       >
         <p>COLOR:</p>
-        <div className="color-boxes">
-          {colors.map((color, index) => (
+        <div className="swatch-boxes">
+          {swatch.map((color, index) => (
             <div
               key={index}
               style={{ backgroundColor: `${color}` }}
-              className={`color-box color-box-${index}
+              className={`swatch-box swatch-box-${index}
             ${active ? "current" : ""}
 
 
