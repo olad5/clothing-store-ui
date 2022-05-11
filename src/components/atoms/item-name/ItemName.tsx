@@ -13,8 +13,8 @@ export default class ItemName extends Component<ItemNameProps> {
 ${this.props.inCartItemOverlay ? "cart-item-overlay" : ""}
 `}
       >
-        <p className="name">Apollo</p>
-        <p className="brand">Running Short</p>
+        <p className="name">{this.props.name}</p>
+        <p className="brand">{this.props.brand}</p>
       </div>
     );
   }
