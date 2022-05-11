@@ -9,21 +9,26 @@ import "./TextAtrribute.scss";
 
 export default class TextAttribute extends Component<TextAttributeProps> {
   render() {
-    let sizes = ["XS", "S", "M", "L"];
+    const attributeSet = this.props.attributeSet;
+
     return (
       <div
         id="text-attribute"
         className={`
-
-${this.props.variant === "cart-overlay-item" ? "cart-overlay-item" : ""}
-
-`}
+          ${
+            this.props.variant === "cart-overlay-item"
+              ? "cart-overlay-item"
+              : ""
+          }
+        `}
       >
-        <p>SIZE:</p>
+        <p>{attributeSet.name}:</p>
         <div className="attribute-boxes">
-          {sizes.map((size, index) => (
-            <div key={index} className="attribute-btn">
-              <AppButton variant="secondary">{size}</AppButton>
+          {attributeSet.items.map((attribute) => (
+            <div key={attribute.id} className="attribute-btn">
+              <AppButton variant="secondary">
+                {attribute.displayValue}
+              </AppButton>
             </div>
           ))}
         </div>

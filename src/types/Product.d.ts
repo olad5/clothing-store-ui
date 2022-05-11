@@ -13,14 +13,14 @@ export type Product = {
 };
 
 type Attribute = {
-  displayValue: String;
-  value: String;
-  id: String;
+  displayValue: string;
+  value: string;
+  id: string;
 };
 
 type AttributeSet = {
-  id: String;
-  name: String;
-  type: String;
+  id: string;
+  name: string;
+  type: string;
   items: Attribute[];
 };

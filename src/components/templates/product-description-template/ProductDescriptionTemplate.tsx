@@ -15,6 +15,12 @@ import "./ProductDescriptionTemplate.scss";
 export default class ProductDescriptionTemplate extends Component<ProductDescriptionTemplateProps> {
   render() {
     let product = this.props.product;
+    let swatchAttributes = product.attributes.filter(
+      (attribute) => attribute.type === "swatch"
+    );
+    let textAttributes = product.attributes.filter(
+      (attribute) => attribute.type === "text"
+    );
 
     return (
       <div id="product-description-template">
@@ -33,9 +39,14 @@ export default class ProductDescriptionTemplate extends Component<ProductDescrip
             <div className="item-name">
               <ItemName name={product.name} brand={product.brand} />
             </div>
-            <div className="text-attribute">
-              <TextAttribute variant="cart-item-card" />
-            </div>
+            {textAttributes.map((attribute, index) => (
+              <div className="text-attribute" key={attribute.id}>
+                <TextAttribute
+                  attributeSet={attribute}
+                  variant="cart-item-card"
+                />
+              </div>
+            ))}
             <div className="swatch">
               <Swatch />
             </div>
