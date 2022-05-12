@@ -3,23 +3,33 @@
 #text-attribute {
   @include global.full-container-size;
   display: grid;
-  gap: 1rem;
+  gap: 0.2rem;
 
+  grid-template-rows: 0.7fr 1fr;
   & p {
     font-size: 1.4rem;
     font-weight: 700;
-    flex: 2;
+    text-transform: uppercase;
+
+    height: 1fr;
   }
 
   & .attribute-boxes {
-    flex: 1;
     display: flex;
     @include global.full-container-size;
     justify-content: space-between;
     gap: 0.6rem;
 
-    > .attribute-btn {
+    > .text-attribute-box {
       flex-grow: 1;
+      color: black;
+      border: 1px solid global.$primary-black;
+      background-color: transparent;
+    }
+
+    & .current {
+      background-color: global.$primary-black;
+      color: #fff;
     }
   }
 }

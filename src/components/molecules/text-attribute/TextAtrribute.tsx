@@ -1,13 +1,20 @@
 import { Component } from "react";
 import { TextAttributeProps } from "./TextAtrribute.d";
 
-// Components
-import AppButton from "../../atoms/app-button/AppButton";
-
 // Styles
 import "./TextAtrribute.scss";
 
 export default class TextAttribute extends Component<TextAttributeProps> {
+  state = {
+    active: 0,
+  };
+
+  handleClick(e: React.MouseEvent<HTMLButtonElement>, index: number) {
+    this.setState({
+      active: index,
+    });
+  }
+
   render() {
     const attributeSet = this.props.attributeSet;
 
@@ -24,12 +31,16 @@ export default class TextAttribute extends Component<TextAttributeProps> {
       >
         <p>{attributeSet.name}:</p>
         <div className="attribute-boxes">
-          {attributeSet.items.map((attribute) => (
-            <div key={attribute.id} className="attribute-btn">
-              <AppButton variant="secondary">
-                {attribute.displayValue}
-              </AppButton>
-            </div>
+          {attributeSet.items.map((attribute, index) => (
+            <button
+              key={attribute.id}
+              className={`text-attribute-box 
+            ${this.state.active === index ? "current" : ""}
+              `}
+              onClick={(e) => this.handleClick(e, index)}
+            >
+              {attribute.displayValue}
+            </button>
           ))}
         </div>
       </div>
