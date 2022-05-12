@@ -29,8 +29,21 @@
       max-width: 27rem;
       margin-right: 14rem;
 
+      & .main {
+        min-height: 50vh;
+        gap: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & > * {
+          flex-basis: 20vh;
+          flex-grow: 3;
+        }
+      }
+
       & > * {
-        flex: 1;
+        flex: 4;
       }
 
       & .item-name {
@@ -38,6 +51,7 @@
         font-size: 2.5rem;
       }
       & .text-attribute {
+        min-height: 6rem;
         max-height: 7rem;
       }
 
@@ -51,6 +65,7 @@
         flex-direction: column;
         gap: 0.8rem;
         max-height: 4rem;
+
         & h4 {
           font-size: 1.4rem;
           font-weight: 700;
@@ -58,7 +73,6 @@
       }
       & .app-btn {
         margin-top: 2rem;
-
         max-height: 4rem;
       }
       & .description-text {

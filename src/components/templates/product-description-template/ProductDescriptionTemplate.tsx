@@ -1,4 +1,5 @@
 import { Component } from "react";
+import parse from "html-react-parser";
 
 // Components
 import ProductThumbnails from "../../molecules/product-thumbnails/ProductThumbnails";
@@ -25,6 +26,7 @@ export default class ProductDescriptionTemplate extends Component<ProductDescrip
       currentDisplayImageIndex: index,
     });
   };
+
   render() {
     let product = this.props.product;
     let swatchAttributes = product.attributes.filter(
@@ -51,34 +53,32 @@ export default class ProductDescriptionTemplate extends Component<ProductDescrip
             />
           </div>
           <div className="right">
-            <div className="item-name">
-              <ItemName name={product.name} brand={product.brand} />
-            </div>
-            {textAttributes.map((attribute) => (
-              <div className="text-attribute" key={attribute.id}>
-                <TextAttribute
-                  attributeSet={attribute}
-                  variant="cart-item-card"
-                />
+            <div className="main">
+              <div className="item-name">
+                <ItemName name={product.name} brand={product.brand} />
               </div>
-            ))}
-            {swatchAttributes.length > 0 && (
-              <div className="swatch">
-                <Swatch swatchSet={swatchAttributes[0]} />
+              {textAttributes.map((attribute) => (
+                <div className="text-attribute" key={attribute.id}>
+                  <TextAttribute
+                    attributeSet={attribute}
+                    variant="cart-item-card"
+                  />
+                </div>
+              ))}
+              {swatchAttributes.length > 0 && (
+                <div className="swatch">
+                  <Swatch swatchSet={swatchAttributes[0]} />
+                </div>
+              )}
+              <div className="price-tag">
+                <h4>PRICE:</h4>
+                <PriceTag prices={product.prices} fontBold={true} />
               </div>
-            )}
-            <div className="price-tag">
-              <h4>PRICE:</h4>
-              <PriceTag prices={product.prices} fontBold={true} />
+              <div className="app-btn">
+                <AppButton>add to cart</AppButton>
+              </div>
             </div>
-            <div className="app-btn">
-              <AppButton>add to cart</AppButton>
-            </div>
-            <p className="description-text">
-              Find stunning women's cocktail dresses and party dresses. Stand
-              out in lace and metallic cocktail dresses and party dresses from
-              all your favorite brands.
-            </p>
+            <p className="description-text">{parse(product.description)}</p>
           </div>
         </div>
       </div>
