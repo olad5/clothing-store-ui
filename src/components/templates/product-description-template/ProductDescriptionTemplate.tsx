@@ -47,9 +47,11 @@ export default class ProductDescriptionTemplate extends Component<ProductDescrip
                 />
               </div>
             ))}
-            <div className="swatch">
-              <Swatch />
-            </div>
+            {swatchAttributes.length > 0 && (
+              <div className="swatch">
+                <Swatch swatchSet={swatchAttributes[0]} />
+              </div>
+            )}
             <div className="price-tag">
               <h4>PRICE:</h4>
               <PriceTag prices={product.prices} fontBold={true} />

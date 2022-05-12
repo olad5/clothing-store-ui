@@ -5,10 +5,17 @@ import { SwatchProps } from "./Swatch.d";
 import "./Swatch.scss";
 
 export default class Swatch extends Component<SwatchProps> {
-  render() {
-    let swatch = ["grey", "black", "darkgreen"];
-    let active = false;
+  state = {
+    active: 0,
+  };
 
+  handleClick(e: React.MouseEvent<HTMLButtonElement>, index: number) {
+    this.setState({
+      active: index,
+    });
+  }
+  render() {
+    let colors = this.props.swatchSet.items;
     return (
       <div
         id="swatch"
@@ -20,16 +27,15 @@ ${this.props.variant === "cart-overlay-item" ? "cart-overlay-item" : ""}
       >
         <p>COLOR:</p>
         <div className="swatch-boxes">
-          {swatch.map((color, index) => (
-            <div
+          {colors.map((color, index) => (
+            <button
               key={index}
-              style={{ backgroundColor: `${color}` }}
+              style={{ backgroundColor: `${color.value}` }}
               className={`swatch-box swatch-box-${index}
-            ${active ? "current" : ""}
-
-
-`}
-            ></div>
+            ${this.state.active === index ? "current" : ""}
+              `}
+              onClick={(e) => this.handleClick(e, index)}
+            ></button>
           ))}
         </div>
       </div>
