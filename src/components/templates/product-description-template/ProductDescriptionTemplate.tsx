@@ -13,6 +13,18 @@ import { ProductDescriptionTemplateProps } from "./ProductDescriptionTemplatePro
 import "./ProductDescriptionTemplate.scss";
 
 export default class ProductDescriptionTemplate extends Component<ProductDescriptionTemplateProps> {
+  state = {
+    currentDisplayImageIndex: 0,
+  };
+
+  handleThumbnailChange = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    index: number
+  ) => {
+    this.setState({
+      currentDisplayImageIndex: index,
+    });
+  };
   render() {
     let product = this.props.product;
     let swatchAttributes = product.attributes.filter(
@@ -26,11 +38,14 @@ export default class ProductDescriptionTemplate extends Component<ProductDescrip
       <div id="product-description-template">
         <div className="content">
           <div className="thumbnails">
-            <ProductThumbnails gallery={product.gallery} />
+            <ProductThumbnails
+              gallery={product.gallery}
+              handleThumbnailChange={this.handleThumbnailChange}
+            />
           </div>
           <div className="product-image">
             <img
-              src={product.gallery[0]}
+              src={product.gallery[this.state.currentDisplayImageIndex]}
               alt=" Main Product Image"
               className="main-product-image"
             />
@@ -39,7 +54,7 @@ export default class ProductDescriptionTemplate extends Component<ProductDescrip
             <div className="item-name">
               <ItemName name={product.name} brand={product.brand} />
             </div>
-            {textAttributes.map((attribute, index) => (
+            {textAttributes.map((attribute) => (
               <div className="text-attribute" key={attribute.id}>
                 <TextAttribute
                   attributeSet={attribute}
