@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Attribute } from "../../../types/Product";
 import { SwatchProps } from "./Swatch.d";
 
 // Styles
@@ -9,10 +10,15 @@ export default class Swatch extends Component<SwatchProps> {
     active: 0,
   };
 
-  handleClick(e: React.MouseEvent<HTMLButtonElement>, index: number) {
+  handleClick(
+    e: React.MouseEvent<HTMLButtonElement>,
+    index: number,
+    attribute: { name: string; attribute: Attribute }
+  ) {
     this.setState({
       active: index,
     });
+    this.props.handleSwatchSelection(e, attribute);
   }
   render() {
     let colors = this.props.swatchSet.items;
@@ -20,10 +26,9 @@ export default class Swatch extends Component<SwatchProps> {
       <div
         id="swatch"
         className={`
+        ${this.props.variant === "cart-overlay-item" ? "cart-overlay-item" : ""}
 
-${this.props.variant === "cart-overlay-item" ? "cart-overlay-item" : ""}
-
-`}
+        `}
       >
         <p>COLOR:</p>
         <div className="swatch-boxes">
@@ -34,7 +39,12 @@ ${this.props.variant === "cart-overlay-item" ? "cart-overlay-item" : ""}
               className={`swatch-box swatch-box-${index}
             ${this.state.active === index ? "current" : ""}
               `}
-              onClick={(e) => this.handleClick(e, index)}
+              onClick={(e) =>
+                this.handleClick(e, index, {
+                  name: this.props.swatchSet.name,
+                  attribute: color,
+                })
+              }
             ></button>
           ))}
         </div>

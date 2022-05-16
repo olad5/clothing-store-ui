@@ -1,10 +1,16 @@
 import { Dispatch } from "redux";
-import { CurrencyActionType, ProductActionType } from "../action-types";
+import {
+  CartActionType,
+  CurrencyActionType,
+  ProductActionType,
+} from "../action-types";
 import { categoryProductsQuery, currenciesQuery } from "../../services/queries";
 import { requestData } from "../../services/requestData";
 import { ProductAction } from "../actions/products";
 import { CurrencyAction } from "../actions/currencies";
 import { Currency } from "../../types/Currency";
+import { CartItemSchema } from "../../types/CartItem";
+import { CartAction } from "../actions/cart";
 
 export const getCategoryProducts = (category: string) => {
   return async (dispatch: Dispatch<ProductAction>) => {
@@ -39,6 +45,17 @@ export const changeCurrentCurrency = (currency: Currency) => {
     dispatch({
       type: CurrencyActionType.CHANGE_CURRENT_CURRENCY,
       payload: payload,
+    });
+  };
+};
+
+export const addProductToCart = (cartItem: CartItemSchema) => {
+  return async (dispatch: Dispatch<CartAction>) => {
+    const payload = cartItem;
+
+    dispatch({
+      type: CartActionType.ADD_PRODUCT_TO_CART,
+      payload,
     });
   };
 };

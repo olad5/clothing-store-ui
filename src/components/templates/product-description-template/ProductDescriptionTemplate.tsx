@@ -1,5 +1,7 @@
 import { Component } from "react";
 import parse from "html-react-parser";
+import { bindActionCreators, Dispatch } from "redux";
+import { connect } from "react-redux";
 
 // Components
 import ProductThumbnails from "../../molecules/product-thumbnails/ProductThumbnails";
@@ -8,14 +10,48 @@ import Swatch from "../../molecules/swatch/Swatch";
 import TextAttribute from "../../molecules/text-attribute/TextAtrribute";
 import PriceTag from "../../atoms/price-tag/PriceTag";
 import AppButton from "../../atoms/app-button/AppButton";
-import { ProductDescriptionTemplateProps } from "./ProductDescriptionTemplateProps.d";
+
+import { CartAction } from "../../../state/actions/cart";
+import { actionCreators } from "../../../state";
+import { CartItem, CartItemAttribute } from "../../../types/CartItem.d";
+import { Product } from "../../../types/Product";
+import {
+  ProductDescriptionTemplateProps,
+  StateProps,
+} from "./ProductDescriptionTemplateProps.d";
 
 // Styles
 import "./ProductDescriptionTemplate.scss";
 
-export default class ProductDescriptionTemplate extends Component<ProductDescriptionTemplateProps> {
-  state = {
+class ProductDescriptionTemplate extends Component<ProductDescriptionTemplateProps> {
+  textAttributes = this.props.product.attributes.filter(
+    (attribute) => attribute.type === "text"
+  );
+
+  swatchAttributes = this.props.product.attributes.filter(
+    (attribute) => attribute.type === "swatch"
+  );
+
+  initialAttributes = this.textAttributes
+    .map((attribute) => {
+      return {
+        name: attribute.name,
+        attribute: attribute.items[0],
+      };
+    })
+    .concat(
+      this.swatchAttributes.map((attribute) => {
+        return {
+          name: attribute.name,
+          attribute: attribute.items[0],
+        };
+      })
+    );
+
+  state: StateProps = {
     currentDisplayImageIndex: 0,
+    attributes: this.initialAttributes,
+    swatchColor: null,
   };
 
   handleThumbnailChange = (
@@ -27,14 +63,38 @@ export default class ProductDescriptionTemplate extends Component<ProductDescrip
     });
   };
 
+  handleTextAttributeSelection = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    attribute: CartItemAttribute
+  ) => {
+    this.setState((state) => {
+      let filteredAttributes = this.state.attributes.filter(
+        (currentAttribute) => currentAttribute.name !== attribute.name
+      );
+
+      return { attributes: [...filteredAttributes, attribute] };
+    });
+  };
+
+  handleSwatchSelection = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    attribute: CartItemAttribute
+  ) => {
+    this.setState((state) => {
+      let filteredAttributes = this.state.attributes.filter(
+        (currentAttribute) => currentAttribute.name !== attribute.name
+      );
+
+      return { attributes: [...filteredAttributes, attribute] };
+    });
+  };
+
+  addToCart = () => {
+    this.props.addProductToCart(this.props.product, this.state.attributes);
+  };
+
   render() {
-    let product = this.props.product;
-    let swatchAttributes = product.attributes.filter(
-      (attribute) => attribute.type === "swatch"
-    );
-    let textAttributes = product.attributes.filter(
-      (attribute) => attribute.type === "text"
-    );
+    const product = this.props.product;
 
     return (
       <div id="product-description-template">
@@ -57,17 +117,23 @@ export default class ProductDescriptionTemplate extends Component<ProductDescrip
               <div className="item-name">
                 <ItemName name={product.name} brand={product.brand} />
               </div>
-              {textAttributes.map((attribute) => (
+              {this.textAttributes.map((attribute) => (
                 <div className="text-attribute" key={attribute.id}>
                   <TextAttribute
                     attributeSet={attribute}
                     variant="cart-item-card"
+                    handleTextAttributeSelection={
+                      this.handleTextAttributeSelection
+                    }
                   />
                 </div>
               ))}
-              {swatchAttributes.length > 0 && (
+              {this.swatchAttributes.length > 0 && (
                 <div className="swatch">
-                  <Swatch swatchSet={swatchAttributes[0]} />
+                  <Swatch
+                    swatchSet={this.swatchAttributes[0]}
+                    handleSwatchSelection={this.handleSwatchSelection}
+                  />
                 </div>
               )}
               <div className="price-tag">
@@ -75,13 +141,23 @@ export default class ProductDescriptionTemplate extends Component<ProductDescrip
                 <PriceTag prices={product.prices} fontBold={true} />
               </div>
               <div className="app-btn">
-                <AppButton>add to cart</AppButton>
+                <AppButton onClick={this.addToCart}>add to cart</AppButton>
               </div>
             </div>
-            <p className="description-text">{parse(product.description)}</p>
+            <div className="description-text">{parse(product.description)}</div>
           </div>
         </div>
       </div>
     );
   }
 }
+
+function mapToDispatchProps(dispatch: Dispatch<CartAction>) {
+  const { addProductToCart } = bindActionCreators(actionCreators, dispatch);
+  return {
+    addProductToCart: (product: Product, attributes: CartItemAttribute[]) =>
+      addProductToCart(new CartItem(product, 1, attributes).create()),
+  };
+}
+
+export default connect(null, mapToDispatchProps)(ProductDescriptionTemplate);

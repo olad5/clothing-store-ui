@@ -1,6 +1,8 @@
 import { Component } from "react";
-import "./AppButton.scss";
 import { AppButtonProps } from "./AppButton.d";
+
+// Styles
+import "./AppButton.scss";
 
 export default class AppButton extends Component<AppButtonProps> {
   render() {
@@ -11,12 +13,8 @@ export default class AppButton extends Component<AppButtonProps> {
         className={`
             ${this.props.variant === "secondary" ? "secondary" : ""}
             ${this.props.children === "S" ? "current-size" : ""}
-            ${
-              this.props.children === "<" || this.props.children === ">"
-                ? "tertiary"
-                : ""
-            }
-            `}
+                      `}
+        onClick={this.props.onClick}
       >
         {this.props.children}
       </button>

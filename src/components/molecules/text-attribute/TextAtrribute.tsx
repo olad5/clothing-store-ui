@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { CartItemAttribute } from "../../../types/CartItem";
 import { TextAttributeProps } from "./TextAtrribute.d";
 
 // Styles
@@ -9,10 +10,15 @@ export default class TextAttribute extends Component<TextAttributeProps> {
     active: 0,
   };
 
-  handleClick(e: React.MouseEvent<HTMLButtonElement>, index: number) {
+  handleClick(
+    e: React.MouseEvent<HTMLButtonElement>,
+    index: number,
+    attribute: CartItemAttribute
+  ) {
     this.setState({
       active: index,
     });
+    this.props.handleTextAttributeSelection(e, attribute);
   }
 
   render() {
@@ -37,7 +43,12 @@ export default class TextAttribute extends Component<TextAttributeProps> {
               className={`text-attribute-box 
             ${this.state.active === index ? "current" : ""}
               `}
-              onClick={(e) => this.handleClick(e, index)}
+              onClick={(e) =>
+                this.handleClick(e, index, {
+                  name: attributeSet.name,
+                  attribute,
+                })
+              }
             >
               {attribute.displayValue}
             </button>
