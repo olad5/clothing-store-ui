@@ -13,7 +13,7 @@ const initialState: initialStateType = {
   currentCurrency: { label: "USD", symbol: "$" },
 };
 
-const reducer: Reducer<initialStateType, CurrencyAction> = (
+const currencyReducer: Reducer<initialStateType, CurrencyAction> = (
   state = initialState,
   action: CurrencyAction
 ) => {
@@ -29,4 +29,4 @@ const reducer: Reducer<initialStateType, CurrencyAction> = (
   }
 };
 
-export default reducer;
+export default currencyReducer;

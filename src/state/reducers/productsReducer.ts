@@ -9,7 +9,7 @@ type initialStateType = {
 
 const initialState: initialStateType = { products: [] };
 
-const reducer: Reducer<initialStateType, ProductAction> = (
+const productsReducer: Reducer<initialStateType, ProductAction> = (
   state = initialState,
   action: ProductAction
 ) => {
@@ -21,4 +21,4 @@ const reducer: Reducer<initialStateType, ProductAction> = (
   }
 };
 
-export default reducer;
+export default productsReducer;
