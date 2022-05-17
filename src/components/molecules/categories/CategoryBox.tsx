@@ -7,6 +7,7 @@ import { CategoryBoxProps } from "./CategoryBox.d";
 
 // Styles
 import "./CategoryBox.scss";
+import { withRouter } from "../../../with-router/withRouter";
 
 class CategoryBox extends Component<CategoryBoxProps> {
   handleClick = (
@@ -19,8 +20,8 @@ class CategoryBox extends Component<CategoryBoxProps> {
         active: id,
       });
       this.props.getCategoryProducts(category);
-      return;
     }
+    this.props.history.push(`products/`);
   };
 
   state = {
@@ -68,4 +69,4 @@ function mapDispatchToProps(dispatch: Dispatch<ProductAction>) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(CategoryBox);
+export default withRouter(connect(null, mapDispatchToProps)(CategoryBox));

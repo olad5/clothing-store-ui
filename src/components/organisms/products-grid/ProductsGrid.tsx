@@ -13,9 +13,6 @@ import ProductGridCard from "../../molecules/product-grid-card/ProductGridCard";
 import "./ProductsGrid.scss";
 
 class ProductsGrid extends Component<ProductsGridProps> {
-  componentDidMount() {
-    this.props.getCategoryProducts("all");
-  }
   render() {
     let products = this.props.products;
 
