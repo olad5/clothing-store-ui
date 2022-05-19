@@ -127,7 +127,7 @@ class CartItemCard extends Component<CartItemCardProps> {
             </div>
           </div>
           <div className="cart-image-card">
-            <CartImageCard />
+            <CartImageCard gallery={this.props.cartItem.gallery} />
           </div>
         </div>
       </div>

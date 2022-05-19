@@ -3,6 +3,8 @@
 #cart-image-card {
   @include global.full-container-size;
   position: relative;
+  width: 17rem;
+  height: 23rem;
 
   & .item-image {
     @include global.full-container-size;
