@@ -10,7 +10,6 @@
     font-size: 1.4rem;
     font-weight: 700;
     text-transform: uppercase;
-
     height: 1fr;
   }
 
@@ -19,6 +18,10 @@
     @include global.full-container-size;
     justify-content: space-between;
     gap: 0.6rem;
+
+    &.disabled {
+      pointer-events: none;
+    }
 
     > .text-attribute-box {
       flex-grow: 1;

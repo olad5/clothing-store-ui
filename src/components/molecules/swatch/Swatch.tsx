@@ -7,7 +7,7 @@ import "./Swatch.scss";
 
 export default class Swatch extends Component<SwatchProps> {
   state = {
-    active: 0,
+    active: this.props.initialAtrributeIndex,
   };
 
   handleClick(
@@ -18,7 +18,10 @@ export default class Swatch extends Component<SwatchProps> {
     this.setState({
       active: index,
     });
-    this.props.handleSwatchSelection(e, attribute);
+    if (this.props.handleSwatchSelection) {
+      this.props.handleSwatchSelection(e, attribute);
+    }
+    return;
   }
   render() {
     let colors = this.props.swatchSet.items;
@@ -31,7 +34,11 @@ export default class Swatch extends Component<SwatchProps> {
         `}
       >
         <p>COLOR:</p>
-        <div className="swatch-boxes">
+        <div
+          className={`swatch-boxes ${
+            !this.props.handleSwatchSelection ? "disabled" : ""
+          }`}
+        >
           {colors.map((color, index) => (
             <button
               key={index}

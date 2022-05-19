@@ -39,12 +39,24 @@ export const categoryProductsQuery = (variables: {
               name
               inStock
               gallery
-                prices {
-                  currency {
-                    symbol
-                  }
+              description
+              attributes {
+                id
+                name
+                type
+                items {
+                  displayValue
+                  value
+                  id
+                }
+              }
+              prices {
+                currency {
+                  symbol
+                }
                   amount
                 }
+              brand
               }
             }
         }
@@ -52,45 +64,6 @@ export const categoryProductsQuery = (variables: {
     variables: {
       category: variables,
     },
-  };
-
-  return queryString;
-};
-
-export const singleProductQuery = (variables: {
-  productId: string;
-}): { query: string } => {
-  let queryString = {
-    query: `
-      query getSingleProduct($productId: String!) {
-        product(id: $productId) {
-          id
-          name
-          inStock
-          gallery
-          description
-          attributes {
-            id
-            name
-            type
-            items {
-              displayValue
-              value
-              id
-            }
-          }
-          prices {
-            currency {
-              symbol
-            }
-            amount
-          }
-          brand
-        }
-      }
-
-      `,
-    variables,
   };
 
   return queryString;

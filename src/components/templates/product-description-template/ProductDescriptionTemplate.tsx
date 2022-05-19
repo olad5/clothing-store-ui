@@ -120,6 +120,7 @@ class ProductDescriptionTemplate extends Component<ProductDescriptionTemplatePro
               {this.textAttributes.map((attribute) => (
                 <div className="text-attribute" key={attribute.id}>
                   <TextAttribute
+                    initialAtrributeIndex={0}
                     attributeSet={attribute}
                     variant="cart-item-card"
                     handleTextAttributeSelection={
@@ -131,6 +132,7 @@ class ProductDescriptionTemplate extends Component<ProductDescriptionTemplatePro
               {this.swatchAttributes.length > 0 && (
                 <div className="swatch">
                   <Swatch
+                    initialAtrributeIndex={0}
                     swatchSet={this.swatchAttributes[0]}
                     handleSwatchSelection={this.handleSwatchSelection}
                   />
@@ -138,7 +140,7 @@ class ProductDescriptionTemplate extends Component<ProductDescriptionTemplatePro
               )}
               <div className="price-tag">
                 <h4>PRICE:</h4>
-                <PriceTag prices={product.prices} fontBold={true} />
+                <PriceTag prices={product.prices} fontBold />
               </div>
               <div className="app-btn">
                 <AppButton onClick={this.addToCart}>add to cart</AppButton>

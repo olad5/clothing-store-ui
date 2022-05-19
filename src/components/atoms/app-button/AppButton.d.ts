@@ -4,5 +4,5 @@ export type AppButtonProps = {
   variant?: "primary" | "secondary";
   children: ReactNode;
   fontSize?: string;
-  onClick: VoidFunction;
+  onClick(): void;
 };

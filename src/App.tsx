@@ -19,10 +19,12 @@ import ProductDescriptionPage from "./pages/product-description-page/ProductDesc
 
 // Styles
 import "./assets/styles/main.scss";
+import { CategoryAction } from "./state/actions/categories";
 
 class App extends Component<AppProps> {
   componentDidMount() {
     this.props.getCurrencies();
+    this.props.getCategoryProducts("all");
   }
 
   render() {
@@ -47,11 +49,17 @@ class App extends Component<AppProps> {
   }
 }
 
-function mapDispatchToProps(dispatch: Dispatch<CurrencyAction>) {
-  const { getCurrencies } = bindActionCreators(actionCreators, dispatch);
+function mapDispatchToProps(
+  dispatch: Dispatch<CurrencyAction | CategoryAction>
+) {
+  const { getCurrencies, getCategoryProducts } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
 
   return {
     getCurrencies: () => getCurrencies(),
+    getCategoryProducts: (category: string) => getCategoryProducts(category),
   };
 }
 

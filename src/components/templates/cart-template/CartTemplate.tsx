@@ -4,23 +4,23 @@ import { Component } from "react";
 import CartItemCard from "../../molecules/cart-item-card/CartItemCard";
 import AppButton from "../../atoms/app-button/AppButton";
 
+import { CartTemplateProps } from "./CartTemplate.d";
+
 // Styles
 import "./CartTemplate.scss";
 
-export default class CartTemplate extends Component {
+export default class CartTemplate extends Component<CartTemplateProps> {
   render() {
-    let numOfItems = Array(12).fill(0);
-    let tax = 15;
-    let total = numOfItems.length * 100;
+    const cart = this.props.cart;
 
     return (
       <div id="cart-template">
         <h1>CART</h1>
         <div className="cart-items">
           <hr className="line" />
-          {numOfItems.map((item) => (
-            <div>
-              <CartItemCard />
+          {cart.map((cartItem) => (
+            <div key={cartItem.cartId}>
+              <CartItemCard cartItem={cartItem} />
               <hr className="line" />
             </div>
           ))}
@@ -28,17 +28,21 @@ export default class CartTemplate extends Component {
         <div className="cart-summary">
           <div className="breakdown-text">
             <p>
-              Tax: <span className="bold-text">${tax.toFixed(2)}</span>
+              Tax:{" "}
+              <span className="bold-text">${this.props.tax.toFixed(2)}</span>
             </p>
             <p>
-              Qty: <span className="bold-text">{numOfItems.length}</span>
+              Qty: <span className="bold-text">{cart.length}</span>
             </p>
           </div>
           <p className="total-text">
-            Total: <span className="bold-text">${total.toFixed(2)}</span>
+            Total:{" "}
+            <span className="bold-text">
+              ${this.props.cartTotalAmount.toFixed(2)}
+            </span>
           </p>
           <div className="app-btn">
-            <AppButton>order</AppButton>
+            <AppButton onClick={() => {}}>order</AppButton>
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ import "./TextAtrribute.scss";
 
 export default class TextAttribute extends Component<TextAttributeProps> {
   state = {
-    active: 0,
+    active: this.props.initialAtrributeIndex,
   };
 
   handleClick(
@@ -18,7 +18,10 @@ export default class TextAttribute extends Component<TextAttributeProps> {
     this.setState({
       active: index,
     });
-    this.props.handleTextAttributeSelection(e, attribute);
+    if (this.props.handleTextAttributeSelection) {
+      this.props.handleTextAttributeSelection(e, attribute);
+    }
+    return;
   }
 
   render() {
@@ -36,7 +39,11 @@ export default class TextAttribute extends Component<TextAttributeProps> {
         `}
       >
         <p>{attributeSet.name}:</p>
-        <div className="attribute-boxes">
+        <div
+          className={`attribute-boxes ${
+            !this.props.handleTextAttributeSelection ? "disabled" : ""
+          }`}
+        >
           {attributeSet.items.map((attribute, index) => (
             <button
               key={attribute.id}

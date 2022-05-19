@@ -1,8 +1,10 @@
 import { Price } from "./Currency";
 import { Product, AttributeSet, Attribute } from "./Product";
 
-export type CartItemSchema = Pick<Product, "name" | "gallery" | "prices"> & {
-  id: string;
+export type CartItemSchema = Pick<
+  Product,
+  "name" | "gallery" | "prices" | "brand" | "id"
+> & {
   attributes: CartItemAttribute[];
   cartId: number;
   quantity: number;
@@ -27,6 +29,7 @@ export class CartItem {
       gallery: this.product.gallery,
       quantity: this.quantity,
       name: this.product.name,
+      brand: this.product.brand,
       prices: this.product.prices,
       attributes: this.attributes,
     };

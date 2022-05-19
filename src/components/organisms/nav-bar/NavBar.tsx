@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 
 // Components
 import CategoryBox from "../../molecules/categories/CategoryBox";
@@ -15,9 +16,9 @@ export default class Navbar extends Component {
         <div className="categories">
           <CategoryBox />
         </div>
-        <a href="#" className="app-logo">
+        <Link to="/" className="app-logo">
           <img src={AppLogo} alt="App logo" />
-        </a>
+        </Link>
         <div className="nav-actions">
           <Actions />
         </div>
