@@ -14,7 +14,9 @@ class CartPage extends Component<CartPageProps> {
         )
       )
       .flat()
-      .map((currency) => currency.amount)
+      .map(
+        (currency, index) => currency.amount * this.props.cart[index].quantity
+      )
       .reduce((accmulator, currentValue) => {
         return accmulator + currentValue;
       }, 0);
