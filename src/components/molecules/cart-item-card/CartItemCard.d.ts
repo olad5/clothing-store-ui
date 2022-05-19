@@ -13,4 +13,7 @@ export type CartItemCardProps = {
       | CartActionType.INCREMENT_CART_QUANTITY
       | CartActionType.DECREMENT_CART_QUANTITY
   ) => (dispatch: Dispatch<CartAction>) => void;
+  removeProductFromCart: (
+    cartItem: CartItemSchema
+  ) => (dispatch: Dispatch<CartAction>) => void;
 };

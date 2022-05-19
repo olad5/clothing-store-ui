@@ -20,8 +20,14 @@ interface DecrementCartQuantityAction {
   payload: number;
 }
 
+interface RemoveProductFromCartAction {
+  type: CartActionType.REMOVE_PRODUCT_FROM_CART;
+  payload: number;
+}
+
 export type CartAction =
   | AddProductToCartAction
   | FetchCartAction
+  | RemoveProductFromCartAction
   | IncrementCartQuantityAction
   | DecrementCartQuantityAction;

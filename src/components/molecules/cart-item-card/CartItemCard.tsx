@@ -10,6 +10,7 @@ import CartImageCard from "../../molecules/cart-image-card/CartImageCard";
 import Swatch from "../../molecules/swatch/Swatch";
 import TextAttribute from "../../molecules/text-attribute/TextAtrribute";
 import { CartItemCardProps } from "./CartItemCard.d";
+import DeleteCartItemIcon from "../../../assets/icons/trash-can-icon.svg";
 
 // Styles
 import "./CartItemCard.scss";
@@ -19,7 +20,10 @@ import { CartAction } from "../../../state/actions/cart";
 import { bindActionCreators, Dispatch } from "redux";
 import { actionCreators } from "../../../state";
 import { CartItemSchema } from "../../../types/CartItem";
-import { updateCartQuantityCount } from "./CartItemCard.functions";
+import {
+  deleteItemFromCart,
+  updateCartQuantityCount,
+} from "./CartItemCard.functions";
 import { CartActionType } from "../../../state/action-types";
 
 class CartItemCard extends Component<CartItemCardProps> {
@@ -73,36 +77,53 @@ class CartItemCard extends Component<CartItemCardProps> {
         {/* right side */}
         <div className="right">
           <div className="cart-btns">
-            <div className="cart-btn">
-              <AppButton
+            <div className="horizontal-btns">
+              <button
+                className="delete-cartItem-btn"
                 onClick={() =>
-                  updateCartQuantityCount(
-                    cartItem,
-                    CartActionType.INCREMENT_CART_QUANTITY,
-                    this.props.updateCartQuantity
-                  )
+                  deleteItemFromCart(cartItem, this.props.removeProductFromCart)
                 }
-                variant="secondary"
-                fontSize="2.4rem"
               >
-                +
-              </AppButton>
+                <img
+                  src={DeleteCartItemIcon}
+                  alt="Delete Item from cart"
+                  className="delete-cartItem-icon"
+                />
+              </button>
             </div>
-            <p className="cart-count">{cartItem.quantity}</p>
-            <div className="cart-btn">
-              <AppButton
-                onClick={() =>
-                  updateCartQuantityCount(
-                    cartItem,
-                    CartActionType.DECREMENT_CART_QUANTITY,
-                    this.props.updateCartQuantity
-                  )
-                }
-                variant="secondary"
-                fontSize="2.4rem"
-              >
-                -
-              </AppButton>
+
+            <div className="vertical-btns">
+              <div className="cart-btn">
+                <AppButton
+                  onClick={() =>
+                    updateCartQuantityCount(
+                      cartItem,
+                      CartActionType.INCREMENT_CART_QUANTITY,
+                      this.props.updateCartQuantity
+                    )
+                  }
+                  variant="secondary"
+                  fontSize="2.4rem"
+                >
+                  +
+                </AppButton>
+              </div>
+              <p className="cart-count">{cartItem.quantity}</p>
+              <div className="cart-btn">
+                <AppButton
+                  onClick={() =>
+                    updateCartQuantityCount(
+                      cartItem,
+                      CartActionType.DECREMENT_CART_QUANTITY,
+                      this.props.updateCartQuantity
+                    )
+                  }
+                  variant="secondary"
+                  fontSize="2.4rem"
+                >
+                  -
+                </AppButton>
+              </div>
             </div>
           </div>
           <div className="cart-image-card">
@@ -126,12 +147,13 @@ function mapStateToProps(
 }
 
 function mapDispatchToProps(dispatch: Dispatch<CartAction>) {
-  const { incrementCart, decrementCart } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
+  const { incrementCart, decrementCart, removeProductFromCart } =
+    bindActionCreators(actionCreators, dispatch);
 
   return {
+    removeProductFromCart: (cartItem: CartItemSchema) =>
+      removeProductFromCart(cartItem),
+
     updateCartQuantity: (
       cartItem: CartItemSchema,
       action:

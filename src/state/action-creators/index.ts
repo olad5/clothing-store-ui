@@ -81,3 +81,14 @@ export const decrementCart = (cartItem: CartItemSchema) => {
     });
   };
 };
+
+export const removeProductFromCart = (cartItem: CartItemSchema) => {
+  return async (dispatch: Dispatch<CartAction>) => {
+    const payload = cartItem.cartId;
+
+    dispatch({
+      type: CartActionType.REMOVE_PRODUCT_FROM_CART,
+      payload,
+    });
+  };
+};
