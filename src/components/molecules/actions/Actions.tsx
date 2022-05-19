@@ -18,10 +18,10 @@ class Actions extends Component<ActionsProps> {
     cartOverlayActive: false,
   };
 
-  wrapperRef = createRef<HTMLDivElement>();
+  wrapperRef = createRef<HTMLButtonElement>();
 
   handleCurrencySwitcherClick(
-    e: React.MouseEvent<HTMLDivElement>,
+    e: React.MouseEvent<HTMLButtonElement>,
     currencySwitcherActive: boolean
   ) {
     if (!currencySwitcherActive) {
@@ -77,7 +77,7 @@ class Actions extends Component<ActionsProps> {
 
     return (
       <div id="actions">
-        <div
+        <button
           className="currency-switcher"
           ref={this.wrapperRef}
           onClick={(e) =>
@@ -101,7 +101,7 @@ class Actions extends Component<ActionsProps> {
           >
             {currencySwitcherActive ? <CurrencySwitcher /> : null}
           </div>
-        </div>
+        </button>
         <button
           className="cart-overlay-icon"
           onClick={(e) => this.handleCartOverlayBtnClick(e, cartOverlayActive)}
