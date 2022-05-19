@@ -10,4 +10,18 @@ interface FetchCartAction {
   payload: CartItemSchema[];
 }
 
-export type CartAction = AddProductToCartAction | FetchCartAction;
+interface IncrementCartQuantityAction {
+  type: CartActionType.INCREMENT_CART_QUANTITY;
+  payload: number;
+}
+
+interface DecrementCartQuantityAction {
+  type: CartActionType.DECREMENT_CART_QUANTITY;
+  payload: number;
+}
+
+export type CartAction =
+  | AddProductToCartAction
+  | FetchCartAction
+  | IncrementCartQuantityAction
+  | DecrementCartQuantityAction;

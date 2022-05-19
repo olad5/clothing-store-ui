@@ -15,7 +15,12 @@ import { CartItemCardProps } from "./CartItemCard.d";
 import "./CartItemCard.scss";
 
 import { getInitialAttribute } from "../text-attribute/TextAtrribute.functions";
+import { CartAction } from "../../../state/actions/cart";
+import { bindActionCreators, Dispatch } from "redux";
+import { actionCreators } from "../../../state";
 import { CartItemSchema } from "../../../types/CartItem";
+import { updateCartQuantityCount } from "./CartItemCard.functions";
+import { CartActionType } from "../../../state/action-types";
 
 class CartItemCard extends Component<CartItemCardProps> {
   render() {
@@ -70,17 +75,29 @@ class CartItemCard extends Component<CartItemCardProps> {
           <div className="cart-btns">
             <div className="cart-btn">
               <AppButton
-                onClick={() => {}}
+                onClick={() =>
+                  updateCartQuantityCount(
+                    cartItem,
+                    CartActionType.INCREMENT_CART_QUANTITY,
+                    this.props.updateCartQuantity
+                  )
+                }
                 variant="secondary"
                 fontSize="2.4rem"
               >
                 +
               </AppButton>
             </div>
-            <p className="cart-count">1</p>
+            <p className="cart-count">{cartItem.quantity}</p>
             <div className="cart-btn">
               <AppButton
-                onClick={() => {}}
+                onClick={() =>
+                  updateCartQuantityCount(
+                    cartItem,
+                    CartActionType.DECREMENT_CART_QUANTITY,
+                    this.props.updateCartQuantity
+                  )
+                }
                 variant="secondary"
                 fontSize="2.4rem"
               >
@@ -108,4 +125,24 @@ function mapStateToProps(
   };
 }
 
-export default connect(mapStateToProps)(CartItemCard);
+function mapDispatchToProps(dispatch: Dispatch<CartAction>) {
+  const { incrementCart, decrementCart } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
+
+  return {
+    updateCartQuantity: (
+      cartItem: CartItemSchema,
+      action:
+        | CartActionType.INCREMENT_CART_QUANTITY
+        | CartActionType.DECREMENT_CART_QUANTITY
+    ) => {
+      if (action === CartActionType.INCREMENT_CART_QUANTITY)
+        return incrementCart(cartItem);
+      return decrementCart(cartItem);
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartItemCard);

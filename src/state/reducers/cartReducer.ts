@@ -34,6 +34,39 @@ const cartReducer: Reducer<initialStateType, CartAction> = (
 
       return { ...state, cart: [...state.cart, action.payload] };
 
+    case CartActionType.INCREMENT_CART_QUANTITY:
+      return {
+        ...state,
+        cart: state.cart.map((cartItem) => {
+          if (cartItem.cartId === action.payload) {
+            return {
+              ...cartItem,
+              quantity: cartItem.quantity + 1,
+            };
+          }
+
+          return cartItem;
+        }),
+      };
+
+    case CartActionType.DECREMENT_CART_QUANTITY:
+      return {
+        ...state,
+        cart: state.cart.map((cartItem) => {
+          if (cartItem.cartId === action.payload) {
+            return {
+              ...cartItem,
+              quantity:
+                cartItem.quantity !== 1
+                  ? cartItem.quantity - 1
+                  : cartItem.quantity,
+            };
+          }
+
+          return cartItem;
+        }),
+      };
+
     default:
       return state;
   }

@@ -59,3 +59,25 @@ export const addProductToCart = (cartItem: CartItemSchema) => {
     });
   };
 };
+
+export const incrementCart = (cartItem: CartItemSchema) => {
+  return async (dispatch: Dispatch<CartAction>) => {
+    const payload = cartItem.cartId;
+
+    dispatch({
+      type: CartActionType.INCREMENT_CART_QUANTITY,
+      payload,
+    });
+  };
+};
+
+export const decrementCart = (cartItem: CartItemSchema) => {
+  return async (dispatch: Dispatch<CartAction>) => {
+    const payload = cartItem.cartId;
+
+    dispatch({
+      type: CartActionType.DECREMENT_CART_QUANTITY,
+      payload,
+    });
+  };
+};
