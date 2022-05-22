@@ -29,7 +29,11 @@ export default class CartTemplate extends Component<CartTemplateProps> {
           <div className="breakdown-text">
             <p>
               Tax:{" "}
-              <span className="bold-text">${this.props.tax.toFixed(2)}</span>
+              <span className="bold-text">
+                {this.props.currentCurrency.symbol}
+
+                {this.props.tax.toFixed(2)}
+              </span>
             </p>
             <p>
               Qty: <span className="bold-text">{cart.length}</span>
@@ -38,7 +42,9 @@ export default class CartTemplate extends Component<CartTemplateProps> {
           <p className="total-text">
             Total:{" "}
             <span className="bold-text">
-              ${this.props.cartTotalAmount.toFixed(2)}
+              {this.props.currentCurrency.symbol}
+
+              {this.props.cartTotalAmount.toFixed(2)}
             </span>
           </p>
           <div className="app-btn">

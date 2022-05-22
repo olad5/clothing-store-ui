@@ -2,7 +2,6 @@
 
 #swatch {
   @include global.full-container-size;
-
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -39,10 +38,24 @@
 
 #swatch.cart-overlay-item {
   gap: 0.7rem;
-  height: 4.5rem;
+
+  & p {
+    font-size: 1rem;
+    font-weight: 400;
+    flex: 1;
+  }
 
   & .swatch-boxes {
-    gap: 0.9rem;
-    width: 62%;
+    gap: 0.4rem;
+    padding-left: 0.3rem;
+  }
+
+  & .swatch-box {
+    height: 1.6rem;
+
+    &.current {
+      padding: 0.4rem;
+      flex-grow: 0.4;
+    }
   }
 }

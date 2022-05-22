@@ -69,6 +69,7 @@ class CartItemCard extends Component<CartItemCardProps> {
                   initialSwatchAttributes[0]
                 )}
                 swatchSet={initialSwatchAttributes[0]}
+                variant="cart-item-card"
               />
             </div>
           )}

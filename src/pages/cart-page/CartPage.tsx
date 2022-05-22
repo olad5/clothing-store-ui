@@ -3,24 +3,11 @@ import { connect } from "react-redux";
 import CartTemplate from "../../components/templates/cart-template/CartTemplate";
 import { RootState } from "../../state/reducers";
 import { CartPageProps } from "./CartPage.d";
+import { getTotalAmount } from "./CartPage.functions";
 
 class CartPage extends Component<CartPageProps> {
   render() {
-    const total = this.props.cart
-      .map((cartItem) => cartItem.prices)
-      .map((cartItemPrices) =>
-        cartItemPrices.filter(
-          (price) => price.currency.symbol === this.props.currentCurrency.symbol
-        )
-      )
-      .flat()
-      .map(
-        (currency, index) => currency.amount * this.props.cart[index].quantity
-      )
-      .reduce((accmulator, currentValue) => {
-        return accmulator + currentValue;
-      }, 0);
-
+    const total = getTotalAmount(this.props.cart, this.props.currentCurrency);
     const tax = 0.025 * total;
 
     return (
@@ -29,12 +16,13 @@ class CartPage extends Component<CartPageProps> {
           cart={this.props.cart}
           cartTotalAmount={total}
           tax={tax}
+          currentCurrency={this.props.currentCurrency}
         />
       </div>
     );
   }
 }
-function mapStateToProps(state: RootState) {
+export function mapStateToProps(state: RootState) {
   return {
     cart: state.cart.cart,
     currentCurrency: state.currencies.currentCurrency,

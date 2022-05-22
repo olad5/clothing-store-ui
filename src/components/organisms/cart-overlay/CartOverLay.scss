@@ -7,9 +7,11 @@
   gap: 2rem;
   max-height: 66rem;
   padding: 2rem 1rem;
+  width: max-content;
 
   & .cart-overlay-heading {
     font-size: 1.6rem;
+
     & .number-of-items {
       font-weight: 300;
     }

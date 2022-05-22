@@ -31,7 +31,7 @@ class App extends Component<AppProps> {
     return (
       <div>
         <Router>
-          <div className="container">
+          <div id="container">
             <Navbar />
             <Routes>
               <Route path="/" element={<Navigate to="/products/" />} />
