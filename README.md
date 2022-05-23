@@ -1,3 +1,12 @@
+# Clothing Store UI
+
+This application was built using  React, TypeScript, Sass and React Router Dom.
+>
+> `Figma Design`: [https://www.figma.com/file/MSyCAqVy1UgNap0pvqH6H3/]( https://shrtco.de/q22jN)
+>
+> `GraphQL endpoint`: [https://github.com/scandiweb/junior-react-endpoint](https://github.com/scandiweb/junior-react-endpoint)
+
+ 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -44,3 +53,12 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+
+```
+  Submission By: Francis Shonubi
+  I look forward to hearing from you.
+
+  Thank you! 
+```
