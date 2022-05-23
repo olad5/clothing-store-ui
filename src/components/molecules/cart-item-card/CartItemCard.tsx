@@ -47,11 +47,11 @@ class CartItemCard extends Component<CartItemCardProps> {
           <div className="price-tag">
             <PriceTag prices={cartItem.prices} fontBold />
           </div>
-          {initialTextAttributes.map((attribute) => (
+          {initialTextAttributes.map((attribute, index) => (
             <div className="text-attribute" key={attribute.id}>
               <TextAttribute
                 initialAtrributeIndex={getInitialAttribute(
-                  cartItem.attributes[0].attribute,
+                  cartItem.attributes[index].attribute,
                   attribute
                 )}
                 attributeSet={attribute}

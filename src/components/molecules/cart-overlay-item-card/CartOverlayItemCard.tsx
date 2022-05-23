@@ -46,11 +46,11 @@ class CartOverlayItemCard extends Component<CartOverlayItemCardProps> {
           <div className="price-tag">
             <PriceTag prices={cartItem.prices} fontMedium />
           </div>
-          {initialTextAttributes.map((attribute) => (
+          {initialTextAttributes.map((attribute, index) => (
             <div className="text-attributes" key={attribute.id}>
               <TextAttribute
                 initialAtrributeIndex={getInitialAttribute(
-                  cartItem.attributes[0].attribute,
+                  cartItem.attributes[index].attribute,
                   attribute
                 )}
                 attributeSet={attribute}
