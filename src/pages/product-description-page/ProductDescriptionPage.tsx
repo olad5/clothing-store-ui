@@ -11,6 +11,7 @@ import {
   WithRouterProps,
   Params,
 } from "../../with-router/withRouter";
+import { Navigate } from "react-router-dom";
 
 class ProductDescriptionPage extends Component<ProductDescriptionPageProps> {
   state = {
@@ -19,11 +20,14 @@ class ProductDescriptionPage extends Component<ProductDescriptionPageProps> {
   };
 
   render() {
-    return (
-      <div>
-        <ProductDescriptionTemplate product={this.props.product} />
-      </div>
-    );
+    if (!this.props.product.inStock) {
+      return <Navigate to="/products" />;
+    } else
+      return (
+        <div>
+          <ProductDescriptionTemplate product={this.props.product} />
+        </div>
+      );
   }
 }
 
