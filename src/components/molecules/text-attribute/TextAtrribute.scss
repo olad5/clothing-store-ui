@@ -26,6 +26,8 @@
 
     > .text-attribute-box {
       flex-grow: 1;
+      padding-left: 1rem;
+      padding-right: 1rem;
       color: black;
       border: 1px solid global.$primary-black;
       background-color: transparent;
@@ -47,5 +49,16 @@
     font-weight: 400;
     text-transform: none;
     height: 1fr;
+  }
+
+  & .attribute-boxes {
+    display: flex;
+    gap: 0.3rem;
+    > .text-attribute-box {
+      padding: 0.4rem;
+      font-size: 1rem;
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
 }

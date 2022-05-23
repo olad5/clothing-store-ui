@@ -51,7 +51,9 @@ class CartItemCard extends Component<CartItemCardProps> {
             <div className="text-attribute" key={attribute.id}>
               <TextAttribute
                 initialAtrributeIndex={getInitialAttributeIndex(
-                  cartItem.attributes[index].attribute,
+                  this.props.cartItem.attributes.filter(
+                    (item) => item.name !== "Color"
+                  )[index].attribute,
                   attribute
                 )}
                 attributeSet={attribute}

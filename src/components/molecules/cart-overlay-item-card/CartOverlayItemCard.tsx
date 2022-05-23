@@ -50,7 +50,9 @@ class CartOverlayItemCard extends Component<CartOverlayItemCardProps> {
             <div className="text-attributes" key={attribute.id}>
               <TextAttribute
                 initialAtrributeIndex={getInitialAttributeIndex(
-                  cartItem.attributes[index].attribute,
+                  this.props.cartItem.attributes.filter(
+                    (item) => item.name !== "Color"
+                  )[index].attribute,
                   attribute
                 )}
                 attributeSet={attribute}

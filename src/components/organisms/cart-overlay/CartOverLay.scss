@@ -11,7 +11,7 @@
 
   & .cart-overlay-heading {
     font-size: 1.6rem;
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.8rem;
 
     & .number-of-items {
       font-weight: 300;
@@ -22,7 +22,7 @@
     @include global.full-container-size;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 4rem;
     min-height: 300%;
 
     &.overflow {
