@@ -145,8 +145,10 @@ class ProductDescriptionTemplate extends Component<ProductDescriptionTemplatePro
               <div className="app-btn">
                 <AppButton onClick={this.addToCart}>add to cart</AppButton>
               </div>
+              <div className="description-text">
+                {parse(product.description)}
+              </div>
             </div>
-            <div className="description-text">{parse(product.description)}</div>
           </div>
         </div>
       </div>
