@@ -18,7 +18,7 @@ import { CartAction } from "../../../state/actions/cart";
 import { actionCreators } from "../../../state";
 import { CartItemSchema } from "../../../types/CartItem";
 import { CartActionType } from "../../../state/action-types";
-import { getInitialAttribute } from "../text-attribute/TextAtrribute.functions";
+import { getInitialAttributeIndex } from "../text-attribute/TextAtrribute.functions";
 import { CartOverlayItemCardProps } from "./CartOverlayItemCard.d";
 import { updateCartQuantityCount } from "../cart-item-card/CartItemCard.functions";
 
@@ -49,7 +49,7 @@ class CartOverlayItemCard extends Component<CartOverlayItemCardProps> {
           {initialTextAttributes.map((attribute, index) => (
             <div className="text-attributes" key={attribute.id}>
               <TextAttribute
-                initialAtrributeIndex={getInitialAttribute(
+                initialAtrributeIndex={getInitialAttributeIndex(
                   cartItem.attributes[index].attribute,
                   attribute
                 )}
@@ -61,7 +61,7 @@ class CartOverlayItemCard extends Component<CartOverlayItemCardProps> {
           {initialSwatchAttributes.length > 0 && (
             <div className="swatch">
               <Swatch
-                initialAtrributeIndex={getInitialAttribute(
+                initialAtrributeIndex={getInitialAttributeIndex(
                   this.props.cartItem.attributes.filter(
                     (item) => item.name === "Color"
                   )[0].attribute,

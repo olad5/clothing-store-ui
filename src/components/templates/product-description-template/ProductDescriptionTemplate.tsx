@@ -22,31 +22,19 @@ import {
 
 // Styles
 import "./ProductDescriptionTemplate.scss";
+import { getInitialTextAttributes } from "../../molecules/text-attribute/TextAtrribute.functions";
+import { getInitialSwatchAttributes } from "../../molecules/swatch/Swatch.functions";
+import { getInitialAttributes } from "./ProductDescriptionTemplate.functions";
 
 class ProductDescriptionTemplate extends Component<ProductDescriptionTemplateProps> {
-  textAttributes = this.props.product.attributes.filter(
-    (attribute) => attribute.type === "text"
-  );
+  textAttributes = getInitialTextAttributes(this.props.product);
 
-  swatchAttributes = this.props.product.attributes.filter(
-    (attribute) => attribute.type === "swatch"
-  );
+  swatchAttributes = getInitialSwatchAttributes(this.props.product);
 
-  initialAttributes = this.textAttributes
-    .map((attribute) => {
-      return {
-        name: attribute.name,
-        attribute: attribute.items[0],
-      };
-    })
-    .concat(
-      this.swatchAttributes.map((attribute) => {
-        return {
-          name: attribute.name,
-          attribute: attribute.items[0],
-        };
-      })
-    );
+  initialAttributes = getInitialAttributes(
+    this.textAttributes,
+    this.swatchAttributes
+  );
 
   state: StateProps = {
     currentDisplayImageIndex: 0,

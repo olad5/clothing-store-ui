@@ -15,7 +15,7 @@ import DeleteCartItemIcon from "../../../assets/icons/trash-can-icon.svg";
 // Styles
 import "./CartItemCard.scss";
 
-import { getInitialAttribute } from "../text-attribute/TextAtrribute.functions";
+import { getInitialAttributeIndex } from "../text-attribute/TextAtrribute.functions";
 import { CartAction } from "../../../state/actions/cart";
 import { bindActionCreators, Dispatch } from "redux";
 import { actionCreators } from "../../../state";
@@ -50,7 +50,7 @@ class CartItemCard extends Component<CartItemCardProps> {
           {initialTextAttributes.map((attribute, index) => (
             <div className="text-attribute" key={attribute.id}>
               <TextAttribute
-                initialAtrributeIndex={getInitialAttribute(
+                initialAtrributeIndex={getInitialAttributeIndex(
                   cartItem.attributes[index].attribute,
                   attribute
                 )}
@@ -62,7 +62,7 @@ class CartItemCard extends Component<CartItemCardProps> {
           {initialSwatchAttributes.length > 0 && (
             <div className="swatch">
               <Swatch
-                initialAtrributeIndex={getInitialAttribute(
+                initialAtrributeIndex={getInitialAttributeIndex(
                   this.props.cartItem.attributes.filter(
                     (item) => item.name === "Color"
                   )[0].attribute,

@@ -1,3 +1,4 @@
+import { Dispatch } from "redux";
 import { CartItemAttribute } from "../../../types/CartItem";
 import { Product } from "../../../types/Product";
 export type ProductDescriptionTemplateProps = {

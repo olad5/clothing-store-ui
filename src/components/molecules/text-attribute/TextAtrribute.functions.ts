@@ -1,6 +1,6 @@
-import { Attribute, AttributeSet } from "../../../types/Product";
+import { Attribute, AttributeSet, Product } from "../../../types/Product";
 
-export function getInitialAttribute(
+export function getInitialAttributeIndex(
   attribute: Attribute,
   attributeSet: AttributeSet
 ) {
@@ -13,4 +13,8 @@ export function getInitialAttribute(
   });
 
   return index;
+}
+
+export function getInitialTextAttributes(product: Product): AttributeSet[] {
+  return product.attributes.filter((attribute) => attribute.type === "text");
 }
