@@ -49,7 +49,9 @@ class ProductGridCard extends Component<ProductGridCardProps> {
           {!product.inStock && (
             <div className="out-of-stock-text">out of stock</div>
           )}
-          <p className="product-name">{product.name}</p>
+          <p className="product-name">
+            {product.brand} {product.name}
+          </p>
           <div className="price-tag">
             <PriceTag prices={product.prices} fontMedium />
           </div>
