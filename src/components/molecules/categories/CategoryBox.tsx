@@ -23,17 +23,37 @@ class CategoryBox extends Component<CategoryBoxProps> {
       });
       this.props.getCategoryProducts(category);
     }
-    this.props.history.push(`products/`);
+    this.props.navigate(`products/?${category}`);
   };
 
-  state = {
+  state: {
+    categories: { name: string }[];
+    active: number;
+  } = {
     active: 0,
     categories: [],
   };
 
   async componentDidMount() {
     const { data } = await requestData(categoriesQuery());
-    this.setState({ categories: data.categories });
+    const categories: { name: string }[] = data.categories;
+    this.setState({
+      categories: categories,
+    });
+
+    const categoryInUrl = this.props.location.search.split("?")[1];
+    if (categoryInUrl) {
+      this.setState({
+        active: categories
+          .map((category, index) => {
+            if (categoryInUrl === category.name) return index;
+            return undefined;
+          })
+          .filter((value: number | undefined) => typeof value === "number")[0],
+      });
+
+      this.props.getCategoryProducts(categoryInUrl);
+    }
   }
 
   render() {
@@ -41,7 +61,7 @@ class CategoryBox extends Component<CategoryBoxProps> {
 
     return (
       <div id="categories">
-        {this.state.categories.map((category: { name: string }, index) => (
+        {this.state.categories.map((category, index) => (
           <button
             className={active === index ? "current" : ""}
             key={index}
