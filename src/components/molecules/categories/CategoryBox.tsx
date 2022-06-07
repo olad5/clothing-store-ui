@@ -8,6 +8,8 @@ import { CategoryBoxProps } from "./CategoryBox.d";
 // Styles
 import "./CategoryBox.scss";
 import { withRouter } from "../../../with-router/withRouter";
+import { requestData } from "../../../services/requestData";
+import { categoriesQuery } from "../../../services/queries";
 
 class CategoryBox extends Component<CategoryBoxProps> {
   handleClick = (
@@ -26,32 +28,24 @@ class CategoryBox extends Component<CategoryBoxProps> {
 
   state = {
     active: 0,
+    categories: [],
   };
+
+  async componentDidMount() {
+    const { data } = await requestData(categoriesQuery());
+    this.setState({ categories: data.categories });
+  }
 
   render() {
     const { active } = this.state;
-    const categories = [
-      {
-        id: 0,
-        name: "all",
-      },
-      {
-        id: 1,
-        name: "clothes",
-      },
-      {
-        id: 2,
-        name: "tech",
-      },
-    ];
 
     return (
       <div id="categories">
-        {categories.map((category) => (
+        {this.state.categories.map((category: { name: string }, index) => (
           <button
-            className={active === category.id ? "current" : ""}
-            key={category.id}
-            onClick={(e) => this.handleClick(e, category.id, category.name)}
+            className={active === index ? "current" : ""}
+            key={index}
+            onClick={(e) => this.handleClick(e, index, category.name)}
           >
             {category.name.toUpperCase()}
           </button>
