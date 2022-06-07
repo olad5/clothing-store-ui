@@ -106,7 +106,6 @@ class CartItemCard extends Component<CartItemCardProps> {
                     )
                   }
                   variant="secondary"
-                  fontSize="2.4rem"
                 >
                   +
                 </AppButton>
@@ -122,7 +121,6 @@ class CartItemCard extends Component<CartItemCardProps> {
                     )
                   }
                   variant="secondary"
-                  fontSize="2.4rem"
                 >
                   -
                 </AppButton>

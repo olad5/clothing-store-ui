@@ -89,7 +89,6 @@ class CartOverlayItemCard extends Component<CartOverlayItemCardProps> {
                   )
                 }
                 variant="secondary"
-                fontSize="1.8rem"
               >
                 +
               </AppButton>
@@ -105,7 +104,6 @@ class CartOverlayItemCard extends Component<CartOverlayItemCardProps> {
                   )
                 }
                 variant="secondary"
-                fontSize="1.8rem"
               >
                 -
               </AppButton>

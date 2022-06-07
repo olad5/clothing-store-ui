@@ -73,6 +73,6 @@
     display: flex;
     gap: 3rem;
     justify-content: space-between;
-    font-size: 1.6rem;
+    font-size: var(--app-button-font-size);
   }
 }
