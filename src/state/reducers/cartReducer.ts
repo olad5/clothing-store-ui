@@ -50,6 +50,18 @@ const cartReducer: Reducer<initialStateType, CartAction> = (
       };
 
     case CartActionType.DECREMENT_CART_QUANTITY:
+      const cartItem = state.cart.find(
+        (currentItem) => currentItem.cartId === action.payload
+      );
+
+      if (cartItem && cartItem.quantity === 1) {
+        return {
+          ...state,
+          cart: state.cart.filter((cartItem) => {
+            return cartItem.cartId !== action.payload;
+          }),
+        };
+      }
       return {
         ...state,
         cart: state.cart.map((cartItem) => {
