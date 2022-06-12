@@ -15,21 +15,32 @@ const cartReducer: Reducer<initialStateType, CartAction> = (
 ) => {
   switch (action.type) {
     case CartActionType.ADD_PRODUCT_TO_CART:
-      if (
-        state.cart.find(
-          (currentItem) =>
-            currentItem.name === action.payload.name &&
+      const item = state.cart.find(
+        (currentItem) =>
+          currentItem.name === action.payload.name &&
+          JSON.stringify(
+            currentItem.attributes.sort((a, b) => (a.name < b.name ? -1 : 1))
+          ) ===
             JSON.stringify(
-              currentItem.attributes.sort((a, b) => (a.name < b.name ? -1 : 1))
-            ) ===
-              JSON.stringify(
-                action.payload.attributes.sort((a, b) =>
-                  a.name < b.name ? -1 : 1
-                )
+              action.payload.attributes.sort((a, b) =>
+                a.name < b.name ? -1 : 1
               )
-        )
-      ) {
-        return state;
+            )
+      );
+
+      if (item) {
+        return {
+          ...state,
+          cart: state.cart.map((cartItem) => {
+            if (cartItem.cartId == item?.cartId) {
+              return {
+                ...cartItem,
+                quantity: cartItem.quantity + 1,
+              };
+            }
+            return cartItem;
+          }),
+        };
       }
 
       return { ...state, cart: [...state.cart, action.payload] };
@@ -50,7 +61,7 @@ const cartReducer: Reducer<initialStateType, CartAction> = (
       };
 
     case CartActionType.DECREMENT_CART_QUANTITY:
-      const cartItem = state.cart.find(
+      let cartItem = state.cart.find(
         (currentItem) => currentItem.cartId === action.payload
       );
 
