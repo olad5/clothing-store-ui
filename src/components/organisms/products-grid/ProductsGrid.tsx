@@ -2,9 +2,6 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { RootState } from "../../../state/reducers";
 import { ProductsGridProps } from "./ProductsGrid.d";
-import { actionCreators } from "../../../state/";
-import { ProductAction } from "../../../state/actions/products";
-import { bindActionCreators, Dispatch } from "redux";
 
 // Components
 import ProductGridCard from "../../molecules/product-grid-card/ProductGridCard";
@@ -34,12 +31,4 @@ function mapStateToProps(state: RootState) {
   };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<ProductAction>) {
-  const { getCategoryProducts } = bindActionCreators(actionCreators, dispatch);
-
-  return {
-    getCategoryProducts: (category: string) => getCategoryProducts(category),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsGrid);
+export default connect(mapStateToProps)(ProductsGrid);

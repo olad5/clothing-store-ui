@@ -27,6 +27,44 @@ export const currenciesQuery = (): { query: string } => {
   return queryString;
 };
 
+export const singleProductQuery = (id: string): { query: string } => {
+  let queryString = {
+    query: `
+        query getSingleProduct($productId: String!) {
+          product(id: $productId) {
+            id
+            name
+            inStock
+            gallery
+            description
+            attributes {
+              id
+              name
+              type
+              items {
+                displayValue
+                value
+                id
+              }
+            }
+            prices {
+              currency {
+                symbol
+              }
+              amount
+            }
+            brand
+          }
+        }
+      `,
+    variables: {
+      productId: id,
+    },
+  };
+
+  return queryString;
+};
+
 export const categoryProductsQuery = (variables: {
   title: string;
 }): { query: string } => {
@@ -39,17 +77,6 @@ export const categoryProductsQuery = (variables: {
               name
               inStock
               gallery
-              description
-              attributes {
-                id
-                name
-                type
-                items {
-                  displayValue
-                  value
-                  id
-                }
-              }
               prices {
                 currency {
                   symbol
