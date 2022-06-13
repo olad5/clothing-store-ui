@@ -41,7 +41,6 @@
   }
 
   &.out-of-stock {
-    pointer-events: none;
     filter: opacity(40%);
 
     & .out-of-stock-text {

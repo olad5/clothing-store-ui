@@ -12,6 +12,7 @@ export default class AppButton extends Component<AppButtonProps> {
         className={`
             ${this.props.variant}
             ${this.props.children === "S" ? "current-size" : ""}
+            ${this.props.disabled ? "disabled" : ""}
                       `}
         onClick={this.props.onClick}
       >

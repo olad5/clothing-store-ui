@@ -14,6 +14,11 @@
   line-height: 2rem;
   font-weight: 600;
 
+  &.disabled {
+    pointer-events: none;
+    filter: opacity(40%);
+  }
+
   &.secondary {
     color: black;
     border: 1px solid global.$primary-black;

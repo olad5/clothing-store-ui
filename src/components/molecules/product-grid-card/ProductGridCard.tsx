@@ -39,7 +39,7 @@ class ProductGridCard extends Component<ProductGridCardProps> {
         className={` ${product.inStock ? "" : "out-of-stock"} `}
         id="product-grid-card"
       >
-        <Link to={`${product.inStock ? `/products/${product.id}` : `#`} `}>
+        <Link to={`/products/${product.id}`}>
           <img
             src={product.gallery[0]}
             alt="Product"

@@ -131,7 +131,12 @@ class ProductDescriptionTemplate extends Component<ProductDescriptionTemplatePro
                 <PriceTag prices={product.prices} fontBold />
               </div>
               <div className="app-btn">
-                <AppButton onClick={this.addToCart}>add to cart</AppButton>
+                <AppButton
+                  disabled={this.props.product.inStock ? false : true}
+                  onClick={this.addToCart}
+                >
+                  add to cart
+                </AppButton>
               </div>
               <div className="description-text">
                 {parse(product.description)}
