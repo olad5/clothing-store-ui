@@ -12,8 +12,6 @@ import TextAttribute from "../text-attribute/TextAtrribute";
 // Styles
 import "./CartOverlayItemCard.scss";
 
-import { CartItemCardProps } from "../cart-item-card/CartItemCard.d";
-import { RootState } from "../../../state/reducers";
 import { CartAction } from "../../../state/actions/cart";
 import { actionCreators } from "../../../state";
 import { CartItemSchema } from "../../../types/CartItem";
@@ -21,15 +19,43 @@ import { CartActionType } from "../../../state/action-types";
 import { getInitialAttributeIndex } from "../text-attribute/TextAtrribute.functions";
 import { CartOverlayItemCardProps } from "./CartOverlayItemCard.d";
 import { updateCartQuantityCount } from "../cart-item-card/CartItemCard.functions";
+import { requestData } from "../../../services/requestData";
+import { singleProductInitialAttributesQuery } from "../../../services/queries";
+import { AttributeSet } from "../../../types/Product";
 
 class CartOverlayItemCard extends Component<CartOverlayItemCardProps> {
+  state: {
+    loading: boolean;
+    initialProductAttributes: AttributeSet[];
+  } = {
+    loading: true,
+    initialProductAttributes: [] as AttributeSet[],
+  };
+
+  async componentDidMount() {
+    const productId = this.props.cartItem.id;
+    const { data } = await requestData(
+      singleProductInitialAttributesQuery(productId)
+    );
+    const initialProductAttributes: AttributeSet[] = data.product.attributes;
+
+    this.setState({
+      initialProductAttributes: initialProductAttributes,
+      loading: false,
+    });
+    return;
+  }
+
   render() {
+    if (this.state.loading) {
+      return <h2>loading … </h2>;
+    }
     const cartItem = this.props.cartItem;
 
-    const initialTextAttributes = this.props.productAttributes.filter(
+    const initialTextAttributes = this.state.initialProductAttributes.filter(
       (attribute) => attribute.type === "text"
     );
-    const initialSwatchAttributes = this.props.productAttributes.filter(
+    const initialSwatchAttributes = this.state.initialProductAttributes.filter(
       (attribute) => attribute.type === "swatch"
     );
     return (
@@ -118,17 +144,6 @@ class CartOverlayItemCard extends Component<CartOverlayItemCardProps> {
   }
 }
 
-function mapStateToProps(
-  state: RootState,
-  ownProps: Pick<CartItemCardProps, "cartItem">
-) {
-  return {
-    productAttributes: state.products.products.filter(
-      (item) => item.id === ownProps.cartItem.id
-    )[0].attributes,
-  };
-}
-
 function mapDispatchToProps(dispatch: Dispatch<CartAction>) {
   const { incrementCart, decrementCart } = bindActionCreators(
     actionCreators,
@@ -149,7 +164,4 @@ function mapDispatchToProps(dispatch: Dispatch<CartAction>) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CartOverlayItemCard);
+export default connect(null, mapDispatchToProps)(CartOverlayItemCard);

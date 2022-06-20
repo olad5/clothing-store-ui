@@ -64,6 +64,34 @@ export const singleProductQuery = (id: string): { query: string } => {
 
   return queryString;
 };
+export const singleProductInitialAttributesQuery = (
+  id: string
+): { query: string } => {
+  let queryString = {
+    query: `
+        query getSingleProductInitialAttributes($productId: String!) {
+          product(id: $productId) {
+            id
+            attributes {
+              id
+              name
+              type
+              items {
+                displayValue
+                value
+                id
+              }
+            }
+          }
+        }
+      `,
+    variables: {
+      productId: id,
+    },
+  };
+
+  return queryString;
+};
 
 export const categoryProductsQuery = (variables: {
   title: string;

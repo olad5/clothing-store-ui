@@ -6,7 +6,6 @@ import { AttributeSet } from "../../../types/Product";
 
 export type CartItemCardProps = {
   cartItem: CartItemSchema;
-  productAttributes: AttributeSet[];
   updateCartQuantity: (
     cartItem: CartItemSchema,
     action:

@@ -1,6 +1,5 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { RootState } from "../../../state/reducers";
 
 // Components
 import AppButton from "../../atoms/app-button/AppButton";
@@ -25,15 +24,43 @@ import {
   updateCartQuantityCount,
 } from "./CartItemCard.functions";
 import { CartActionType } from "../../../state/action-types";
+import { requestData } from "../../../services/requestData";
+import { singleProductInitialAttributesQuery } from "../../../services/queries";
+import { AttributeSet } from "../../../types/Product";
 
 class CartItemCard extends Component<CartItemCardProps> {
+  state: {
+    loading: boolean;
+    initialProductAttributes: AttributeSet[];
+  } = {
+    loading: true,
+    initialProductAttributes: [] as AttributeSet[],
+  };
+
+  async componentDidMount() {
+    const productId = this.props.cartItem.id;
+    const { data } = await requestData(
+      singleProductInitialAttributesQuery(productId)
+    );
+    const initialProductAttributes: AttributeSet[] = data.product.attributes;
+
+    this.setState({
+      initialProductAttributes: initialProductAttributes,
+      loading: false,
+    });
+    return;
+  }
+
   render() {
+    if (this.state.loading) {
+      return <h2>loading … </h2>;
+    }
     const cartItem = this.props.cartItem;
 
-    const initialTextAttributes = this.props.productAttributes.filter(
+    const initialTextAttributes = this.state.initialProductAttributes.filter(
       (attribute) => attribute.type === "text"
     );
-    const initialSwatchAttributes = this.props.productAttributes.filter(
+    const initialSwatchAttributes = this.state.initialProductAttributes.filter(
       (attribute) => attribute.type === "swatch"
     );
 
@@ -136,17 +163,6 @@ class CartItemCard extends Component<CartItemCardProps> {
   }
 }
 
-function mapStateToProps(
-  state: RootState,
-  ownProps: Pick<CartItemCardProps, "cartItem">
-) {
-  return {
-    productAttributes: state.products.products.filter(
-      (item) => item.id === ownProps.cartItem.id
-    )[0].attributes,
-  };
-}
-
 function mapDispatchToProps(dispatch: Dispatch<CartAction>) {
   const { incrementCart, decrementCart, removeProductFromCart } =
     bindActionCreators(actionCreators, dispatch);
@@ -168,4 +184,4 @@ function mapDispatchToProps(dispatch: Dispatch<CartAction>) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartItemCard);
+export default connect(null, mapDispatchToProps)(CartItemCard);
