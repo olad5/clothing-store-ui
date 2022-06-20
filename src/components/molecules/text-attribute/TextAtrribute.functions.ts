@@ -6,10 +6,11 @@ export function getInitialAttributeIndex(
 ) {
   const attributes = attributeSet.items;
 
-  const index: number = attributes.findIndex((currentAttribute) => {
+  const index: number = attributes.findIndex((currentAttribute, index) => {
     if (JSON.stringify(currentAttribute) === JSON.stringify(attribute)) {
       return true;
     }
+    return index;
   });
 
   return index;
