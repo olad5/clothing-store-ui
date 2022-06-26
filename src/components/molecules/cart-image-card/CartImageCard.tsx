@@ -32,7 +32,7 @@ export default class CartImageCard extends Component<CartImageCardProps> {
         <img
           className="item-image"
           src={this.props.gallery[this.state.active]}
-          alt="cart item card image"
+          alt="cart item card"
         />
 
         {this.props.gallery.length > 1 && (

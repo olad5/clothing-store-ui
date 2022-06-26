@@ -1,5 +1,4 @@
-import { Price } from "./Currency";
-import { Product, AttributeSet, Attribute } from "./Product";
+import { Product, Attribute } from "./Product";
 
 export type CartItemSchema = Pick<
   Product,

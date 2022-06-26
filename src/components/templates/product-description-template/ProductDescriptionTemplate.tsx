@@ -96,7 +96,7 @@ class ProductDescriptionTemplate extends Component<ProductDescriptionTemplatePro
           <div className="product-image">
             <img
               src={product.gallery[this.state.currentDisplayImageIndex]}
-              alt=" Main Product Image"
+              alt=" Main Product"
               className="main-product-image"
             />
           </div>
